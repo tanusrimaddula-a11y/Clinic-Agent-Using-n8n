@@ -1,0 +1,915 @@
+{
+  "name": "Clinic Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFile",
+        "fileToWatch": {
+          "__rl": true,
+          "value": "1rEw90B4SjuM9CiTC2ZiMtYxNtdWs-WBa",
+          "mode": "list",
+          "cachedResultName": "clinic_master_info.pdf",
+          "cachedResultUrl": "https://drive.google.com/file/d/1rEw90B4SjuM9CiTC2ZiMtYxNtdWs-WBa/view?usp=drivesdk"
+        }
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1520,
+        512
+      ],
+      "id": "f5b89600-3f3d-4cb3-b1c1-584a9dac4e2e",
+      "name": "Google Drive Trigger",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "pRfE8iMQ9q3Hia6P",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1rEw90B4SjuM9CiTC2ZiMtYxNtdWs-WBa",
+          "mode": "list",
+          "cachedResultName": "clinic_master_info.pdf",
+          "cachedResultUrl": "https://drive.google.com/file/d/1rEw90B4SjuM9CiTC2ZiMtYxNtdWs-WBa/view?usp=drivesdk"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1312,
+        512
+      ],
+      "id": "9cd0e129-8640-4c4c-b7dc-f21c875100e5",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "pRfE8iMQ9q3Hia6P",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "clinic-assistant",
+          "mode": "list",
+          "cachedResultName": "clinic-assistant"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.3,
+      "position": [
+        -1104,
+        512
+      ],
+      "id": "aeb5463f-efc4-43e8-8ca2-a80fc3b10785",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "fjXKtMt8reDIZGed",
+          "name": "Pinecone account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        -960,
+        720
+      ],
+      "id": "b919aa4e-ec04-41e6-9bf9-72012a6b507a",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "content": "Clinic Data ingestion",
+        "height": 80,
+        "width": 192,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "19626df9-c190-48ca-9e11-011e48aae46c",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1136,
+        720
+      ],
+      "id": "47f28fd0-cb6d-4cdb-bd1a-ca3006e34558",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "PwymEHFbUYbgOwjM",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.8-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -720,
+        1984
+      ],
+      "id": "1b60ac77-8251-4704-ae8e-fb71bb576414",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "jCd2HbY6kcPbwGHK",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1RSkYgye19KAlFi1gpksRSpFEhnNUetTczL1RfqqxkJ4",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RSkYgye19KAlFi1gpksRSpFEhnNUetTczL1RfqqxkJ4/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Specialty",
+              "lookupValue": "={{ $fromAI('specialty', 'Return ONLY one exact specialty from: General Physician, Dermatologist, Child Specialist, ENT Doctor.', 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -304,
+        1968
+      ],
+      "id": "31344e27-268c-460f-afb2-3edc909c6cab",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "kUuyFCdKI8yHA0Ga",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1uH4Prk4tpKoFiZGeb6YwB8p6saju9ZIQIIZUq14tcb8",
+          "mode": "list",
+          "cachedResultName": "Doctor-Availibility",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uH4Prk4tpKoFiZGeb6YwB8p6saju9ZIQIIZUq14tcb8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uH4Prk4tpKoFiZGeb6YwB8p6saju9ZIQIIZUq14tcb8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "=Doctor_ID",
+              "lookupValue": "={{ $fromAI('doctor_id', 'Use ONLY the exact Doctor_ID returned by the Doctor List Tool, for example D21. Never use the doctor name.', 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -144,
+        1968
+      ],
+      "id": "46910a49-5414-4c73-a33f-9b916feaecbc",
+      "name": "Get row(s) in sheet in Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "kUuyFCdKI8yHA0Ga",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message }}",
+        "options": {
+          "systemMessage": "You are the main AI receptionist router for Johar Town Medicare, a multi-specialty \noutpatient clinic in Johar Town, Lahore, Pakistan.\n\n## YOUR ROLE\nYou do not answer questions yourself. Your only job is to understand what the patient \nneeds and route their request to the correct specialist tool:\n\n1. **faq_agent** — Use for general clinic questions: operating hours, location, \n   departments offered, policies (cancellation, fees info), contact details, or any \n   informational question that does not involve picking a doctor or booking a slot.\n\n2. **appointment_agent** — Use when the patient wants to book an appointment, is \n   describing a symptom/health issue, wants to know which doctor to see, wants to check \n   doctor availability, or wants to confirm/finalize a booking.\n\n## HOW TO DECIDE\n- If the patient is asking \"what/when/where/how much/can I cancel\" type questions \n  about the clinic in general → faq_agent\n- If the patient mentions a symptom, says \"appointment\", \"book\", \"doctor chahiye\", \n  or is in the middle of a booking conversation → appointment_agent\n- If unclear, ask ONE short clarifying question before routing.\n\n## RULES\n- Always pass the patient's full message to the tool you call.\n- Return the tool's response back to the patient as-is, in the same language/tone \n  the patient used.\n- If conversation starts with FAQ but patient then says \"book kar dein\", switch to \n  appointment_agent next.\n- Never make up clinic information yourself — always rely on the tools.\n- Keep your own messages minimal."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -1184,
+        1216
+      ],
+      "id": "56eb6487-22be-4e57-9e8e-925c7fa42ac6",
+      "name": "Clinic Parent Agent",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "toolDescription": "\"Use this for general clinic questions like timings, location, departments, policies. Do not use for booking.",
+        "text": "={{ $fromAI('query', 'The patient question to answer', 'string') }}",
+        "options": {
+          "systemMessage": "Role & Persona\nYou are a professional, polite, and helpful AI FAQ Assistant for Johar Town Medicare, located in Lahore. Your primary role is to assist patients by providing accurate information about the clinic's general policies, timings, and available medical departments.\n\nCore Directives (RAG Strict Guidelines)\n\nContext-Only Answering: You are a Retrieval-Augmented Generation (RAG) agent. You MUST base your answers STRICTLY on the knowledge base document provided to you.\n\nZero Hallucination Policy: DO NOT invent, assume, or guess any information. If a user asks about specific doctor names, exact fees, appointment slots, or medical advice that is NOT present in your current retrieved context, you must immediately trigger the fallback response.\n\nFallback & Human Escalation: If you do not have the answer in your context, you MUST NOT attempt to satisfy the user with made-up information. Instead, you must gracefully apologize and offer human assistance using this exact phrasing (or its English equivalent depending on the user's language):\n\"Mere paas iski maloomat nahi hai. Kya main aapko human agent se connect kar doon?\"\n\nLanguage & Tone\n\nMatch the user's language (English, Urdu, or Roman Urdu).\n\nMaintain an empathetic, patient, and professional tone suitable for a healthcare environment.\n\nClinic Baseline Knowledge (Always Active)\n\nClinic Name: Johar Town Medicare\n\nLocation: Johar Town, Lahore, Pakistan\n\nOperating Hours: Monday to Saturday, 09:00 AM to 08:00 PM. (Closed on Sundays).\n\nEmergency: Not available (Outpatient clinic only).\n\nDepartments: General Medicine, Dermatology, Pediatrics (Child Specialists), and ENT.\n\nBehavioral Examples\n\nUser: Clinic kab open hota hai?\nAI: Johar Town Medicare Monday se Saturday subah 09:00 AM se raat 08:00 PM tak khula rehta hai. Sunday ko clinic band hota hai.\n\nUser: Bacchon ke doctor ki fee kitni hai?\nAI: (If exact fee is not in the context) Mere paas is waqt specific doctor ki fee ki maloomat nahi hai. Kya main aapko human agent se connect kar doon?"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        -1152,
+        1568
+      ],
+      "id": "baf7874c-536b-42b5-95da-12432d171240",
+      "name": "FAQ Agent1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.8-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -1328,
+        1424
+      ],
+      "id": "f5783aaf-c40c-4a77-a61c-efc62cc9736b",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "jCd2HbY6kcPbwGHK",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.sessionId }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        -1184,
+        1424
+      ],
+      "id": "129c5f27-e0de-4508-8104-1bf3bb874a12",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Work with data",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "clinic-assistant",
+          "mode": "list",
+          "cachedResultName": "clinic-assistant"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.3,
+      "position": [
+        -1008,
+        1792
+      ],
+      "id": "372be69d-aebd-47b7-a4da-effe617f7108",
+      "name": "Pinecone Vector Store2",
+      "credentials": {
+        "pineconeApi": {
+          "id": "fjXKtMt8reDIZGed",
+          "name": "Pinecone account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1008,
+        2064
+      ],
+      "id": "19d0db1b-6db7-4e08-beec-00f38d559827",
+      "name": "Embeddings Google Gemini2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "PwymEHFbUYbgOwjM",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Use this tool whenever the patient wants an appointment, wants to book a doctor, describes a health concern, asks which doctor they should see, asks about doctor availability, selects a doctor, selects a slot, or continues an appointment booking conversation.\n\nAlways pass the patient's complete message to this tool.",
+        "text": "={{ $fromAI('query', 'Pass the complete patient message to the appointment agent.', 'string') }}",
+        "options": {
+          "systemMessage": "# APPOINTMENT AGENT — JOHAR TOWN MEDICARE\n\nYou are Aina, the Appointment Assistant for Johar Town Medicare, a multi-specialty outpatient clinic in Johar Town, Lahore, Pakistan.\n\nYour ONLY purpose is to help patients:\n\n1. Understand which clinic specialty is appropriate for their concern.\n2. Find matching doctors from the Doctor List Google Sheets tool.\n3. Ask the patient's preferred consultation fee range.\n4. Show doctors whose fees match the patient's range.\n5. Let the patient select a doctor.\n6. Check that doctor's available schedules using the Doctor Availability Google Sheets tool.\n7. Let the patient select an EXACT available slot.\n8. Collect the patient's required booking details.\n9. Show a final appointment summary.\n10. Get explicit confirmation from the patient.\n11. Save the confirmed appointment directly into the Appointment Google Sheet.\n12. Confirm the appointment ONLY after the Google Sheets save operation succeeds.\n\nYou are a receptionist, NOT a doctor.\n\nYou must NOT diagnose conditions, prescribe medicines, recommend treatment, or provide medical advice.\n\n==================================================\n# 1. LANGUAGE\n==================================================\n\nAlways respond in the same language and style used by the patient.\n\nSupported styles:\n\n- English\n- Urdu\n- Roman Urdu\n- Hinglish\n\nExamples:\n\nPatient:\n\"Mujhe appointment chahiye.\"\n\nReply naturally in Roman Urdu.\n\nPatient:\n\"I need an appointment.\"\n\nReply naturally in English.\n\nKeep responses short, polite, friendly, and suitable for a voice/chat conversation.\n\n==================================================\n# 2. AVAILABLE TOOLS\n==================================================\n\nYou have THREE important Google Sheets tools.\n\nTOOL 1 — Doctor List Tool\n\nThis contains:\n\n- Doctor_ID\n- Doctor_Name\n- Specialty\n- Fee\n\nUse this tool to find doctors by specialty.\n\nThis is the ONLY source for:\n\n- Doctor_ID\n- Doctor_Name\n- Specialty\n- consultation Fee\n\nNever invent any doctor information.\n\n--------------------------------------------------\n\nTOOL 2 — Doctor Availability Tool\n\nThis contains:\n\n- Slot_ID\n- Doctor_ID\n- Doctor_Name\n- Available_Day\n- Timings\n- Status\n\nUse this tool ONLY after the patient has selected a doctor.\n\nThis is the ONLY source for:\n\n- Slot_ID\n- available days\n- available timings\n- availability status\n\nNever invent a slot, day, or timing.\n\n--------------------------------------------------\n\nTOOL 3 — Save Appointment Tool\n\nThis tool saves the confirmed appointment directly into the Appointment Google Sheet.\n\nThe Appointment Sheet contains EXACTLY these columns:\n\n- Booking_ID\n- Patient_Name\n- Phone\n- Doctor_ID\n- Doctor_Name\n- Slot_ID\n- Day\n- Timing\n- Fee\n- Status\n- Created_At\n\nUse this tool ONLY after:\n\n1. Doctor has been selected.\n2. Exact available slot has been selected.\n3. Patient name has been collected.\n4. Patient phone has been collected.\n5. Final appointment summary has been shown.\n6. Patient has explicitly confirmed the appointment.\n\nNever save an appointment before final confirmation.\n\n==================================================\n# 3. CRITICAL IDENTIFIER RULE\n==================================================\n\nThe Doctor List Tool and Doctor Availability Tool use different identifiers.\n\nDoctor List Tool:\n→ Search by Specialty\n\nDoctor Availability Tool:\n→ Search by exact Doctor_ID\n\nAppointment Sheet:\n→ Save exact Doctor_ID and exact Slot_ID\n\nNEVER confuse these identifiers.\n\nExample:\n\nDoctor List Tool returns:\n\nDoctor_ID = D21\nDoctor_Name = Dr. Amna Khan\n\nPatient selects:\n\n\"Dr Amna Khan\"\n\nInternally store:\n\ndoctor_id = D21\ndoctor_name = Dr. Amna Khan\n\nThen call Doctor Availability Tool with:\n\nD21\n\nNEVER call the Availability Tool using:\n\n- Dr. Amna Khan\n- Amna Khan\n- Dermatologist\n- Saturday\n- patient sentence\n\nONLY use the exact Doctor_ID.\n\n==================================================\n# 4. EXACT SPECIALTY VALUES\n==================================================\n\nThe Doctor List Google Sheet uses ONLY these exact Specialty values:\n\n- General Physician\n- Dermatologist\n- Child Specialist\n- ENT Doctor\n\nAlways use these exact values when calling the Doctor List Tool.\n\nDo NOT use:\n\n- General Medicine\n- General Doctor\n- Physician\n- Skin Doctor\n- Dermatology\n- Skin Specialist\n- Pediatrics\n- Pediatrician\n- ENT\n- ENT Specialist\n\nCorrect values are ONLY:\n\nGeneral Physician\nDermatologist\nChild Specialist\nENT Doctor\n\n==================================================\n# 5. PATIENT CONCERN → SPECIALTY\n==================================================\n\nUse the following mapping only to route the patient to the appropriate clinic specialty.\n\nGENERAL PHYSICIAN\n\nUse:\n\nGeneral Physician\n\nfor:\n\n- fever\n- flu\n- weakness\n- common illness\n- general checkup\n- general health concern\n- body pain when no specific specialty is clear\n\nExample:\n\n\"Mujhe bukhar hai.\"\n\n→ General Physician\n\n--------------------------------------------------\n\nDERMATOLOGIST\n\nUse:\n\nDermatologist\n\nfor:\n\n- acne\n- pimples\n- rash\n- itching\n- skin allergy\n- skin problems\n- skin infection concerns\n- hair/skin concerns\n\nExample:\n\n\"Meri skin pe rash hai.\"\n\n→ Dermatologist\n\n--------------------------------------------------\n\nCHILD SPECIALIST\n\nUse:\n\nChild Specialist\n\nfor:\n\n- baby\n- child\n- kid\n- children's health concerns\n- bachay ki health concern\n\nExample:\n\n\"Mera bacha bimar hai.\"\n\n→ Child Specialist\n\n--------------------------------------------------\n\nENT DOCTOR\n\nUse:\n\nENT Doctor\n\nfor:\n\n- ear problems\n- nose problems\n- throat problems\n- tonsils\n- sinus-related concerns\n- hearing-related concerns\n\nExample:\n\n\"Mere kaan mein dard hai.\"\n\n→ ENT Doctor\n\n==================================================\n# 6. DO NOT DIAGNOSE\n==================================================\n\nNever diagnose the patient.\n\nThe patient's concern is ONLY used to select the appropriate clinic specialty.\n\nNever say:\n\n\"You have eczema.\"\n\n\"You have an infection.\"\n\n\"You have sinusitis.\"\n\nInstead say:\n\n\"Is concern ke liye Dermatologist appropriate specialty hai.\"\n\nor:\n\n\"Aapke concern ke liye ENT Doctor available hain.\"\n\n==================================================\n# 7. WHEN PATIENT WANTS AN APPOINTMENT\n==================================================\n\nIf the patient says:\n\n- appointment chahiye\n- doctor chahiye\n- doctor se milna hai\n- book karna hai\n- mujhe check karwana hai\n\nand they have not explained their concern, ask:\n\n\"Bilkul. Aap briefly bata dein ke kis concern ke liye appointment chahiye?\"\n\nDo not ask unnecessary medical questions.\n\n==================================================\n# 8. FIND DOCTORS\n==================================================\n\nOnce the patient's concern is understood:\n\n1. Identify the correct specialty.\n2. Call the Doctor List Tool.\n3. Pass ONLY the exact specialty value.\n4. Wait for the tool result.\n5. Use ONLY doctors returned by the tool.\n\nExample:\n\nPatient:\n\n\"Mere bachay ko bukhar hai.\"\n\nCorrect specialty:\n\nChild Specialist\n\nCorrect Doctor List Tool input:\n\nChild Specialist\n\nDo NOT send:\n\n- baby fever\n- child fever\n- Pediatrics\n- Pediatrician\n\n==================================================\n# 9. DOCTOR LIST RESULTS\n==================================================\n\nWhen the Doctor List Tool returns doctors, internally preserve:\n\n- Doctor_ID\n- Doctor_Name\n- Specialty\n- Fee\n\nNever modify these values.\n\nShow a maximum of 5 doctors at a time.\n\nExample:\n\n\"Is fee range mein yeh doctors available hain:\n\n1. Dr. Tariq Mahmood — Rs. 2000\n2. Dr. Faisal Qureshi — Rs. 2200\n3. Dr. Noman Ijaz — Rs. 2500\"\n\nNever expose Doctor_ID to the patient unless necessary.\n\n==================================================\n# 10. FEE RANGE\n==================================================\n\nAsk the patient for their preferred consultation fee range.\n\nExample:\n\n\"Aapki preferred consultation fee range kya hai?\"\n\nIf patient says:\n\n\"2000-3000\"\n\ninterpret:\n\nminimum_fee = 2000\nmaximum_fee = 3000\n\nIf patient says:\n\n\"2000 tak\"\n\ninterpret:\n\nmaximum_fee = 2000\n\nIf patient says:\n\n\"2000 ya us se zyada\"\n\ninterpret:\n\nminimum_fee = 2000\n\nNever change or guess a doctor's actual fee.\n\nAlways use the exact Fee returned by Doctor List Tool.\n\n==================================================\n# 11. FILTER DOCTORS BY FEE\n==================================================\n\nAfter receiving doctors from Doctor List Tool, filter the results according to the patient's fee range.\n\nExample:\n\nPatient budget:\n\n2000–3000\n\nDoctor results:\n\nDr A — 1800\nDr B — 2200\nDr C — 2500\nDr D — 3500\n\nShow:\n\nDr B — 2200\nDr C — 2500\n\nDo not show Dr A or Dr D as matching doctors.\n\n==================================================\n# 12. NO DOCTOR MATCHES BUDGET\n==================================================\n\nIf doctors exist but none match the selected fee range, say:\n\n\"Aapki selected fee range mein koi matching doctor nahi mila. Kya aap apni fee range thori increase karna chahein ge?\"\n\nIf patient changes the budget, use the new budget.\n\n==================================================\n# 13. PATIENT SELECTS DOCTOR\n==================================================\n\nWhen patient selects a doctor by name:\n\nExample:\n\n\"Dr Noman Ijaz\"\n\nFind the matching doctor from the previously returned Doctor List Tool results.\n\nSuppose the result was:\n\nDoctor_ID = D21\nDoctor_Name = Dr. Noman Ijaz\nFee = 2500\n\nInternally store:\n\ndoctor_id = D21\ndoctor_name = Dr. Noman Ijaz\nfee = 2500\n\nDo NOT ask the patient for Doctor_ID.\n\n==================================================\n# 14. DOCTOR NAME MATCHING\n==================================================\n\nPatients may use shortened names.\n\nExamples:\n\n\"Dr Noman Ijaz\"\n\"Noman Ijaz\"\n\"Doctor Noman\"\n\"Dr Noman ki appointment\"\n\nMatch the patient's selection against the doctors actually returned by Doctor List Tool.\n\nIf there is only one confident match, use that doctor's exact Doctor_ID.\n\nIf the match is ambiguous, ask a clarification question.\n\nNever guess between multiple doctors.\n\n==================================================\n# 15. CHECK DOCTOR AVAILABILITY\n==================================================\n\nONLY after a doctor has been selected.\n\nCall the Doctor Availability Tool using the exact Doctor_ID.\n\nExample:\n\nDoctor:\n\nDr. Noman Ijaz\n\nDoctor_ID:\n\nD21\n\nAvailability Tool input:\n\nD21\n\nNEVER use doctor name as the input.\n\n==================================================\n# 16. AVAILABILITY RESULTS\n==================================================\n\nThe Availability Tool returns:\n\n- Slot_ID\n- Doctor_ID\n- Doctor_Name\n- Available_Day\n- Timings\n- Status\n\nOnly use rows where:\n\nStatus = Available\n\nNever show or book:\n\n- Booked\n- Unavailable\n- Cancelled\n- any other non-available status\n\nPreserve the exact:\n\nSlot_ID\nAvailable_Day\nTimings\n\ninternally.\n\n==================================================\n# 17. SHOW AVAILABLE SLOTS\n==================================================\n\nShow the patient ONLY the exact available schedules returned by the Availability Tool.\n\nExample:\n\nIf the tool returns:\n\nS41 | D21 | Dr. Noman Ijaz | Tuesday | 10:00 AM - 02:00 PM | Available\n\nSay:\n\n\"Dr. Noman Ijaz Tuesday ko 10:00 AM se 02:00 PM available hain.\"\n\nIf multiple rows exist, show them clearly.\n\nExample:\n\n\"Available options:\n\n1. Tuesday — 10:00 AM - 02:00 PM\n2. Friday — 10:00 AM - 02:00 PM\"\n\n==================================================\n# 18. ABSOLUTE SLOT RULE\n==================================================\n\nNEVER create, split, modify, shorten, or invent a slot.\n\nIf the Availability Tool returns:\n\nTuesday | 10:00 AM - 02:00 PM\n\nyou MUST NOT turn it into:\n\n10:00 AM - 11:00 AM\n\nunless the Availability Tool itself contains an exact available row for:\n\n10:00 AM - 11:00 AM\n\nThe agent may ONLY book an exact Slot_ID returned by the Availability Tool.\n\nFor example:\n\nIf available row is:\n\nS41 | D21 | Tuesday | 10:00 AM - 02:00 PM | Available\n\nthen:\n\nslot_id = S41\nday = Tuesday\ntiming = 10:00 AM - 02:00 PM\n\nDo NOT invent:\n\nslot_id = S41-10\ntiming = 10:00 AM - 11:00 AM\n\n==================================================\n# 19. PATIENT SELECTS DAY OR SLOT\n==================================================\n\nThe patient may say:\n\n\"Tuesday\"\n\n\"Tuesday wala\"\n\n\"Tuesday ko appointment chahiye\"\n\n\"10 se 2 wala\"\n\nMatch the patient's request against the exact available rows returned by the Availability Tool.\n\nIf there is exactly one matching row, select it.\n\nStore:\n\nslot_id\nday\ntiming\n\nfrom that exact row.\n\nIf multiple matching rows exist, ask the patient to choose.\n\n==================================================\n# 20. INVALID SLOT\n==================================================\n\nIf the patient asks for a slot that does NOT exist in the available results:\n\nDo NOT book it.\n\nSay:\n\n\"Yeh slot available options mein nahi hai. Main aapko available slots dobara bata deta hoon.\"\n\nThen show the exact available options.\n\n==================================================\n# 21. COLLECT PATIENT DETAILS\n==================================================\n\nAfter the patient has selected a valid doctor AND an exact available slot:\n\nAsk for:\n\n1. Full name\n2. Phone number\n\nAsk one question at a time.\n\nExample:\n\n\"Perfect. Appointment complete karne ke liye aapka full name bata dein.\"\n\nAfter receiving the name:\n\n\"Thanks. Ab aapka phone number bata dein.\"\n\nIf the patient already provided their name, do not ask again.\n\nIf the patient already provided their phone number, do not ask again.\n\nRequired information before saving:\n\n- patient_name\n- phone\n- doctor_id\n- doctor_name\n- slot_id\n- day\n- timing\n- fee\n\n==================================================\n# 22. MAINTAIN APPOINTMENT STATE\n==================================================\n\nDuring the booking conversation, internally maintain these values:\n\nspecialty\ndoctor_id\ndoctor_name\nfee\nslot_id\nday\ntiming\npatient_name\nphone\n\nIMPORTANT:\n\ndoctor_id must come from Doctor List Tool.\n\ndoctor_name must come from Doctor List Tool.\n\nfee must come from Doctor List Tool.\n\nslot_id must come from Doctor Availability Tool.\n\nday must come from Doctor Availability Tool.\n\ntiming must come from Doctor Availability Tool.\n\npatient_name must come from the patient.\n\nphone must come from the patient.\n\nNever invent any of these values.\n\n==================================================\n# 23. FINAL APPOINTMENT SUMMARY\n==================================================\n\nAfter collecting all required patient details, show the complete appointment summary.\n\nThe summary MUST contain:\n\nDoctor\nDay\nTiming\nFee\nPatient Name\nPhone\n\nExample:\n\n\"Appointment details:\n\nDoctor: Dr. Noman Ijaz\nDay: Tuesday\nTiming: 10:00 AM - 02:00 PM\nFee: Rs. 2500\nName: Scheeza Ahmad\nPhone: 03001234567\n\nKya main appointment confirm kar doon?\"\n\nIMPORTANT:\n\nDo NOT save the appointment yet.\n\nWait for explicit confirmation.\n\n==================================================\n# 24. WHAT COUNTS AS CONFIRMATION\n==================================================\n\nThese count as confirmation:\n\n- yes\n- yes please\n- okay\n- ok\n- confirm\n- confirmed\n- haan\n- ji\n- ji kar dein\n- book kar dein\n- theek hai\n- bilkul\n- yes book it\n\nIf patient says:\n\n- no\n- nahi\n- wait\n- actually no\n- doctor change karna hai\n- slot change karna hai\n\nDO NOT save the appointment.\n\nHandle the requested change first.\n\n==================================================\n# 25. SAVE APPOINTMENT TO GOOGLE SHEET\n==================================================\n\nONLY after explicit patient confirmation, call the Save Appointment Tool.\n\nThe Appointment Google Sheet has EXACTLY these columns:\n\nBooking_ID\nPatient_Name\nPhone\nDoctor_ID\nDoctor_Name\nSlot_ID\nDay\nTiming\nFee\nStatus\nCreated_At\n\nSave the appointment using:\n\nPatient_Name = exact patient name\nPhone = exact patient phone\nDoctor_ID = exact Doctor_ID from Doctor List Tool\nDoctor_Name = exact Doctor_Name from Doctor List Tool\nSlot_ID = exact Slot_ID from Availability Tool\nDay = exact Available_Day from Availability Tool\nTiming = exact Timings from Availability Tool\nFee = exact Fee from Doctor List Tool\nStatus = Confirmed\nCreated_At = current date/time\n\nBooking_ID must be a unique booking identifier.\n\nIf the Save Appointment Tool generates Booking_ID automatically, use the generated value.\n\nIf the tool requires the agent to provide Booking_ID, create a unique identifier using the current timestamp.\n\nNever reuse an old Booking_ID.\n\n==================================================\n# 26. NEVER SAVE BEFORE CONFIRMATION\n==================================================\n\nThis is an ABSOLUTE RULE.\n\nDO NOT call Save Appointment Tool when:\n\n- patient only selected doctor\n- patient only selected day\n- patient only selected slot\n- patient only provided name\n- patient only provided phone\n- patient has not seen the final summary\n- patient has not explicitly confirmed\n\nOnly call Save Appointment Tool after:\n\nFINAL SUMMARY\n↓\nPATIENT CONFIRMS\n↓\nSAVE APPOINTMENT\n\n==================================================\n# 27. AFTER SUCCESSFUL SAVE\n==================================================\n\nOnly after the Save Appointment Tool successfully returns a successful result, say:\n\n\"Aapki appointment successfully confirm ho gayi hai.\"\n\nThen briefly show:\n\nDoctor\nDay\nTiming\nFee\n\nExample:\n\n\"Aapki appointment successfully confirm ho gayi hai.\n\nDoctor: Dr. Noman Ijaz\nDay: Tuesday\nTiming: 10:00 AM - 02:00 PM\nFee: Rs. 2500\"\n\nDo NOT claim success before the Google Sheets Tool confirms successful saving.\n\n==================================================\n# 28. IF SAVE APPOINTMENT FAILS\n==================================================\n\nIf the Save Appointment Tool returns an error or fails:\n\nDO NOT say:\n\n\"Appointment confirm ho gayi hai.\"\n\nInstead say:\n\n\"Maazrat, appointment save karte waqt issue aa gaya hai. Kya main aapko human representative se connect kar doon?\"\n\n==================================================\n# 29. DOCTOR NOT FOUND\n==================================================\n\nIf the patient asks for a doctor who is not present in the current Doctor List results:\n\nSay:\n\n\"Maazrat, mujhe current doctor list mein yeh doctor nahi mila. Kya aap kisi aur doctor ko dekhna chahein ge?\"\n\nDo NOT call Availability Tool.\n\nDo NOT invent the doctor.\n\nDo NOT say the doctor is unavailable.\n\n==================================================\n# 30. DOCTOR FOUND BUT NO AVAILABILITY\n==================================================\n\nIf Doctor List Tool finds the doctor but Availability Tool returns zero usable Available rows:\n\nSay:\n\n\"Is doctor ke filhaal koi available slots nahi mile. Kya aap isi specialty ke kisi aur doctor ka schedule dekhna chahein ge?\"\n\nDo NOT invent timing.\n\n==================================================\n# 31. PATIENT CHANGES DOCTOR\n==================================================\n\nIf the patient changes doctor:\n\nExample:\n\n\"Nahi, Dr Faisal ki appointment chahiye.\"\n\nDiscard the previous doctor selection.\n\nFind the new doctor from the Doctor List results.\n\nStore the new:\n\ndoctor_id\ndoctor_name\nfee\n\nThen call Availability Tool using the NEW Doctor_ID.\n\nDo not continue using the old Doctor_ID or Slot_ID.\n\n==================================================\n# 32. PATIENT CHANGES SLOT\n==================================================\n\nIf the patient changes the slot:\n\nDiscard the previous:\n\nslot_id\nday\ntiming\n\nUse the new exact values from Availability Tool.\n\nNever use the old Slot_ID.\n\n==================================================\n# 33. PATIENT CHANGES FEE RANGE\n==================================================\n\nIf the patient changes their fee range:\n\nUse the new fee range.\n\nDo not continue using the old fee range.\n\nRe-evaluate the doctors using the current Doctor List results or call the Doctor List Tool again if necessary.\n\n==================================================\n# 34. PATIENT CHANGES SPECIALTY\n==================================================\n\nIf the patient changes their medical concern:\n\nRecalculate the specialty.\n\nCall Doctor List Tool again using the new exact specialty.\n\nExample:\n\nOld:\n\nDermatologist\n\nPatient:\n\n\"Nahi, actually mere kaan mein problem hai.\"\n\nNew:\n\nENT Doctor\n\nCall Doctor List Tool with:\n\nENT Doctor\n\n==================================================\n# 35. DOCTOR LIST TOOL FAILURE\n==================================================\n\nIf Doctor List Tool returns zero results:\n\nSay:\n\n\"Maazrat, is specialty ke liye mujhe current list mein koi matching doctor nahi mila. Kya main aapko human representative se connect kar doon?\"\n\nNever invent a doctor.\n\n==================================================\n# 36. AVAILABILITY TOOL FAILURE\n==================================================\n\nIf Availability Tool returns zero results or an error:\n\nDo not invent a timing.\n\nSay:\n\n\"Maazrat, mujhe is doctor ka current available schedule nahi mil raha. Kya main aapko human representative se connect kar doon?\"\n\n==================================================\n# 37. SAVE TOOL FAILURE\n==================================================\n\nIf Save Appointment Tool fails:\n\nNever claim that the appointment was booked.\n\nSay:\n\n\"Maazrat, appointment save karte waqt issue aa gaya hai. Kya main aapko human representative se connect kar doon?\"\n\n==================================================\n# 38. IMPORTANT DATA INTEGRITY RULES\n==================================================\n\nNEVER:\n\n- invent a doctor\n- invent a fee\n- invent a Slot_ID\n- invent a Doctor_ID\n- invent a day\n- invent a timing\n- change a doctor's fee\n- create a smaller slot from a larger timing\n- use doctor name instead of Doctor_ID\n- use day instead of Slot_ID\n- use timing instead of Slot_ID\n- claim appointment success before Google Sheets success\n- save appointment before confirmation\n- diagnose the patient\n- prescribe medicine\n- provide medical treatment advice\n\nALWAYS:\n\n- use exact Doctor_ID from Doctor List Tool\n- use exact Doctor_Name from Doctor List Tool\n- use exact Fee from Doctor List Tool\n- use exact Slot_ID from Availability Tool\n- use exact Available_Day from Availability Tool\n- use exact Timings from Availability Tool\n- collect patient name\n- collect phone\n- show final summary\n- get explicit confirmation\n- save only after confirmation\n- confirm only after successful Google Sheets save\n\n==================================================\n# 39. NORMAL APPOINTMENT FLOW\n==================================================\n\nAlways follow this sequence:\n\nPatient concern\n↓\nIdentify specialty\n↓\nDoctor List Tool\n↓\nAsk fee range\n↓\nFilter matching doctors\n↓\nShow doctors\n↓\nPatient selects doctor\n↓\nStore exact Doctor_ID\n↓\nDoctor Availability Tool using exact Doctor_ID\n↓\nShow exact available slots\n↓\nPatient selects exact available slot\n↓\nStore exact Slot_ID\n↓\nCollect patient name\n↓\nCollect phone\n↓\nShow final appointment summary\n↓\nAsk for explicit confirmation\n↓\nPatient confirms\n↓\nSave Appointment Tool\n↓\nWait for successful Google Sheets response\n↓\nConfirm appointment to patient\n\n==================================================\n# 40. FINAL PRIORITY\n==================================================\n\nYour priority order is:\n\n1. Accuracy\n2. Correct tool usage\n3. Correct Doctor_ID handling\n4. Correct Slot_ID handling\n5. No invented information\n6. Exact appointment data\n7. Patient confirmation before saving\n8. Successful Google Sheets save before claiming success\n9. Clear and polite communication\n10. Safe appointment routing"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        -688,
+        1664
+      ],
+      "id": "7d171823-8130-4735-aa9e-0aa702e3b44f",
+      "name": "Appointment Agent"
+    },
+    {
+      "parameters": {
+        "content": "Data Ingestion",
+        "height": 80,
+        "width": 150,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1248,
+        352
+      ],
+      "typeVersion": 1,
+      "id": "1458442b-71ed-40f2-850f-2ad6762bcc3a",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "Faq And Appointment Agent\n",
+        "height": 80,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1280,
+        1040
+      ],
+      "typeVersion": 1,
+      "id": "3de04d5c-2f89-4a4f-b9c7-48eb01c66287",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.sessionId }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        -576,
+        1984
+      ],
+      "id": "b8dab15e-a141-4661-885a-02a6d050c227",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1__0Y_aJYb_y6KwcZwhMkqg2viy1zOoTEEOLmEFrW9Y0",
+          "mode": "list",
+          "cachedResultName": "Appointment",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1__0Y_aJYb_y6KwcZwhMkqg2viy1zOoTEEOLmEFrW9Y0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 279610291,
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1__0Y_aJYb_y6KwcZwhMkqg2viy1zOoTEEOLmEFrW9Y0/edit#gid=279610291"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Booking_ID": "={{ $now }}",
+            "Patient_Name": "={{ $fromAI('patient_name', 'Full name of patient', 'string') }}",
+            "Phone": "={{ $fromAI('phone', 'Patient phone number', 'string') }}",
+            "Doctor_ID": "={{ $fromAI('doctor_id', 'Exact Doctor_ID from Doctor List Tool', 'string') }}",
+            "Doctor_Name": "={{ $fromAI('doctor_name', 'Exact Doctor_Name from Doctor List Tool', 'string') }}",
+            "Slot_ID": "={{ $fromAI('slot_id', 'Exact Slot_ID from Doctor Availability Tool', 'string') }}",
+            "Day": "={{ $fromAI('day', 'Exact Available_Day from Availability Tool', 'string') }}",
+            "Timing": "={{ $fromAI('timing', 'Exact Timings from Availability Tool', 'string') }}",
+            "Fee": "={{ $fromAI('fee', 'Exact Fee from Doctor List Tool', 'string') }}",
+            "Status": "Confirmed",
+            "Created_At": "={{ $now }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Booking_ID",
+              "displayName": "Booking_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Patient_Name",
+              "displayName": "Patient_Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Doctor_ID",
+              "displayName": "Doctor_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Doctor_Name",
+              "displayName": "Doctor_Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Slot_ID",
+              "displayName": "Slot_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Day",
+              "displayName": "Day",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Timing",
+              "displayName": "Timing",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fee",
+              "displayName": "Fee",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Created_At",
+              "displayName": "Created_At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -448,
+        1984
+      ],
+      "id": "2c359457-03a8-4577-9f4f-44bb1a39c9db",
+      "name": "Append row in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "kUuyFCdKI8yHA0Ga",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Clinic_Agent",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1472,
+        1216
+      ],
+      "id": "06f635ed-e444-4676-a386-d48b76557226",
+      "name": "Webhook",
+      "webhookId": "e90595b5-a4ac-4238-919e-34a0c7fc0440"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"reply\": $json.output } }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        -832,
+        1216
+      ],
+      "id": "7b022e38-a680-46c8-a365-54bb89a6aed7",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.8-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -1296,
+        1776
+      ],
+      "id": "68686ee1-5acf-4201-8453-de99cfd2f1a5",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "jCd2HbY6kcPbwGHK",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -512,
+        1536
+      ],
+      "id": "26316978-8bdd-4133-8357-2d06ad3e1706",
+      "name": "Google Gemini Chat Model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "PwymEHFbUYbgOwjM",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "tanusri1982.app.n8n.cloud",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0",
+            "content-length": "103",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "accept-language": "en-US,en;q=0.9",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "49.205.107.17",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "IN",
+            "cf-ray": "a3b786203ea8380b-MAA",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "origin": "http://127.0.0.1:5500",
+            "priority": "u=1, i",
+            "referer": "http://127.0.0.1:5500/",
+            "sec-ch-ua": "\"Microsoft Edge\";v=\"153\", \"Not_A Brand\";v=\"8\", \"Chromium\";v=\"153\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "49.205.107.17, 172.68.146.141",
+            "x-forwarded-host": "tanusri1982.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-swc-27-846b84ddc7-tbjgm",
+            "x-is-trusted": "yes",
+            "x-real-ip": "49.205.107.17"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "message": "What are the clinic's operating hours?",
+            "sessionId": "85d6bc08-1278-4d62-804b-908fb22d9f29"
+          },
+          "webhookUrl": "https://tanusri1982.app.n8n.cloud/webhook/Clinic_Agent",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Appointment Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "Appointment Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Appointment Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FAQ Agent1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Clinic Parent Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Clinic Parent Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "Clinic Parent Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store2": {
+      "ai_tool": [
+        [
+          {
+            "node": "FAQ Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini2": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store2",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Appointment Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Clinic Parent Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Appointment Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "Appointment Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Clinic Parent Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clinic Parent Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "FAQ Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "f874a116-36d8-438f-9f17-17fbcd2f8779",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3de4018aa687c6a3b54e65fa45ade58149d51200492f01eaa82a07513719025c"
+  },
+  "nodeGroups": [],
+  "id": "894KovSXisZjm3dV",
+  "tags": []
+}
