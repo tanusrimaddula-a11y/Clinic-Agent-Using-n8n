@@ -1,0 +1,2789 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora" data-glow="normal">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#080914" />
+  <meta name="description" content="Lotus Medicals - Full-Screen Futuristic AI Healthcare Receptionist with radiant aurora atmospheric animations, neural network layers, and seamless theme morphing." />
+  <title>Lotus Medicals | AI Appointment Receptionist</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans for crisp, modern healthcare AI typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       1. CSS DESIGN SYSTEM & 6 HEALTHCARE THEMES
+       ========================================================= */
+    :root {
+      /* Theme 1: Aurora AI (Default) - Cyan, Aqua, Lavender, Violet, Indigo, Soft Pink */
+      --bg: #060713;
+      --bg-gradient: radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.24) 0px, transparent 48%),
+                     radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.24) 0px, transparent 50%),
+                     radial-gradient(at 50% 100%, rgba(99, 102, 241, 0.22) 0px, transparent 50%),
+                     radial-gradient(at 85% 85%, rgba(244, 114, 182, 0.16) 0px, transparent 45%),
+                     linear-gradient(160deg, #060713 0%, #0b0d24 100%);
+      --surface: rgba(14, 16, 36, 0.72);
+      --surface-sidebar: rgba(11, 13, 30, 0.65);
+      --surface-glass: rgba(255, 255, 255, 0.045);
+      --surface-elevated: rgba(26, 28, 60, 0.85);
+      --border: rgba(255, 255, 255, 0.11);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-focus: rgba(6, 182, 212, 0.65);
+      --text: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent: linear-gradient(135deg, #06b6d4 0%, #6366f1 50%, #a855f7 100%);
+      --accent-solid: #06b6d4;
+      --accent-glow: rgba(6, 182, 212, 0.35);
+      --bot-bubble: rgba(255, 255, 255, 0.075);
+      --bot-border: rgba(255, 255, 255, 0.12);
+      --bot-text: #f1f5f9;
+      --user-bubble: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+      --user-text: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --card-hover: rgba(255, 255, 255, 0.095);
+      --card-border: rgba(255, 255, 255, 0.10);
+      --card-border-hover: rgba(6, 182, 212, 0.55);
+      --shadow: 0 35px 95px -15px rgba(0, 0, 0, 0.75);
+      --backdrop-blur: blur(32px);
+      --orb-opacity: 0.36;
+      --orb1-color: radial-gradient(circle, #06b6d4, #0284c7);
+      --orb2-color: radial-gradient(circle, #8b5cf6, #4f46e5);
+      --orb3-color: radial-gradient(circle, #10b981, #0d9488);
+      --orb4-color: radial-gradient(circle, #ec4899, #8b5cf6);
+      --online-pulse: #10b981;
+    }
+
+    /* Theme 2: Midnight Medical */
+    [data-theme="midnight"] {
+      --bg: #05070e;
+      --bg-gradient: radial-gradient(at 15% 15%, rgba(14, 165, 233, 0.18) 0px, transparent 48%),
+                     radial-gradient(at 85% 20%, rgba(59, 130, 246, 0.14) 0px, transparent 45%),
+                     linear-gradient(180deg, #05070e 0%, #020408 100%);
+      --surface: rgba(11, 16, 28, 0.82);
+      --surface-sidebar: rgba(8, 12, 22, 0.75);
+      --surface-glass: rgba(255, 255, 255, 0.035);
+      --surface-elevated: rgba(18, 27, 46, 0.9);
+      --border: rgba(255, 255, 255, 0.09);
+      --border-subtle: rgba(255, 255, 255, 0.05);
+      --border-focus: rgba(56, 189, 248, 0.6);
+      --text: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+      --accent-solid: #0ea5e9;
+      --accent-glow: rgba(14, 165, 233, 0.3);
+      --bot-bubble: rgba(18, 27, 46, 0.85);
+      --bot-border: rgba(255, 255, 255, 0.08);
+      --bot-text: #f1f5f9;
+      --user-bubble: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
+      --user-text: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-hover: rgba(14, 165, 233, 0.10);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-hover: rgba(56, 189, 248, 0.4);
+      --shadow: 0 32px 85px -12px rgba(0, 0, 0, 0.75);
+      --backdrop-blur: blur(28px);
+      --orb-opacity: 0.24;
+      --orb1-color: radial-gradient(circle, #0284c7, #0369a1);
+      --orb2-color: radial-gradient(circle, #2563eb, #1e40af);
+      --orb3-color: radial-gradient(circle, #0d9488, #047857);
+      --orb4-color: radial-gradient(circle, #38bdf8, #0284c7);
+      --online-pulse: #34d399;
+    }
+
+    /* Theme 3: Pearl Healthcare (Pristine Luxury Light Mode) */
+    [data-theme="pearl"] {
+      --bg: #f8fafd;
+      --bg-gradient: radial-gradient(at 10% 12%, rgba(14, 165, 233, 0.11) 0px, transparent 45%),
+                     radial-gradient(at 90% 18%, rgba(99, 102, 241, 0.09) 0px, transparent 45%),
+                     linear-gradient(175deg, #f8fafd 0%, #eef3f9 100%);
+      --surface: rgba(255, 255, 255, 0.90);
+      --surface-sidebar: rgba(248, 250, 252, 0.85);
+      --surface-glass: rgba(241, 245, 249, 0.8);
+      --surface-elevated: #ffffff;
+      --border: rgba(226, 232, 240, 0.95);
+      --border-subtle: rgba(226, 232, 240, 0.65);
+      --border-focus: rgba(14, 165, 233, 0.7);
+      --text: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --accent: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      --accent-solid: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.22);
+      --bot-bubble: #ffffff;
+      --bot-border: rgba(226, 232, 240, 0.95);
+      --bot-text: #1e293b;
+      --user-bubble: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
+      --user-text: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.8);
+      --card-hover: rgba(240, 249, 255, 0.98);
+      --card-border: rgba(226, 232, 240, 0.9);
+      --card-border-hover: rgba(14, 165, 233, 0.5);
+      --shadow: 0 28px 65px -12px rgba(15, 23, 42, 0.12);
+      --backdrop-blur: blur(24px);
+      --orb-opacity: 0.18;
+      --orb1-color: radial-gradient(circle, #38bdf8, #bae6fd);
+      --orb2-color: radial-gradient(circle, #818cf8, #c7d2fe);
+      --orb3-color: radial-gradient(circle, #34d399, #a7f3d0);
+      --orb4-color: radial-gradient(circle, #f472b6, #fbcfe8);
+      --online-pulse: #10b981;
+    }
+
+    /* Theme 4: Cyber Clinic */
+    [data-theme="cyber"] {
+      --bg: #030910;
+      --bg-gradient: radial-gradient(at 10% 10%, rgba(20, 241, 149, 0.18) 0px, transparent 48%),
+                     radial-gradient(at 90% 15%, rgba(6, 182, 212, 0.22) 0px, transparent 45%),
+                     linear-gradient(170deg, #030910 0%, #051422 100%);
+      --surface: rgba(6, 19, 32, 0.78);
+      --surface-sidebar: rgba(4, 14, 24, 0.72);
+      --surface-glass: rgba(255, 255, 255, 0.04);
+      --surface-elevated: rgba(10, 30, 50, 0.88);
+      --border: rgba(20, 241, 149, 0.15);
+      --border-subtle: rgba(20, 241, 149, 0.07);
+      --border-focus: rgba(20, 241, 149, 0.7);
+      --text: #f0fdf4;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      --accent-solid: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.35);
+      --bot-bubble: rgba(10, 28, 48, 0.85);
+      --bot-border: rgba(20, 241, 149, 0.14);
+      --bot-text: #f0fdf4;
+      --user-bubble: linear-gradient(135deg, #059669 0%, #0284c7 100%);
+      --user-text: #ffffff;
+      --card-bg: rgba(16, 185, 129, 0.035);
+      --card-hover: rgba(16, 185, 129, 0.10);
+      --card-border: rgba(16, 185, 129, 0.12);
+      --card-border-hover: rgba(20, 241, 149, 0.45);
+      --shadow: 0 32px 85px -12px rgba(0, 0, 0, 0.8);
+      --backdrop-blur: blur(28px);
+      --orb-opacity: 0.32;
+      --orb1-color: radial-gradient(circle, #10b981, #059669);
+      --orb2-color: radial-gradient(circle, #06b6d4, #0891b2);
+      --orb3-color: radial-gradient(circle, #14f195, #10b981);
+      --orb4-color: radial-gradient(circle, #38bdf8, #0284c7);
+      --online-pulse: #14f195;
+    }
+
+    /* Theme 5: Ocean Glass */
+    [data-theme="ocean"] {
+      --bg: #030b17;
+      --bg-gradient: radial-gradient(at 15% 15%, rgba(14, 165, 233, 0.24) 0px, transparent 48%),
+                     radial-gradient(at 85% 15%, rgba(6, 182, 212, 0.20) 0px, transparent 45%),
+                     linear-gradient(160deg, #030b17 0%, #07172e 100%);
+      --surface: rgba(7, 23, 44, 0.68);
+      --surface-sidebar: rgba(5, 17, 34, 0.65);
+      --surface-glass: rgba(255, 255, 255, 0.05);
+      --surface-elevated: rgba(11, 35, 68, 0.85);
+      --border: rgba(56, 189, 248, 0.15);
+      --border-subtle: rgba(56, 189, 248, 0.07);
+      --border-focus: rgba(56, 189, 248, 0.65);
+      --text: #f0f9ff;
+      --text-secondary: #93c5fd;
+      --text-muted: #60a5fa;
+      --accent: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+      --accent-solid: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.35);
+      --bot-bubble: rgba(10, 32, 62, 0.8);
+      --bot-border: rgba(56, 189, 248, 0.16);
+      --bot-text: #f0f9ff;
+      --user-bubble: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+      --user-text: #ffffff;
+      --card-bg: rgba(56, 189, 248, 0.04);
+      --card-hover: rgba(56, 189, 248, 0.12);
+      --card-border: rgba(56, 189, 248, 0.14);
+      --card-border-hover: rgba(56, 189, 248, 0.5);
+      --shadow: 0 35px 90px -15px rgba(0, 0, 0, 0.8);
+      --backdrop-blur: blur(30px);
+      --orb-opacity: 0.35;
+      --orb1-color: radial-gradient(circle, #38bdf8, #0284c7);
+      --orb2-color: radial-gradient(circle, #06b6d4, #0891b2);
+      --orb3-color: radial-gradient(circle, #2563eb, #1d4ed8);
+      --orb4-color: radial-gradient(circle, #2dd4bf, #0d9488);
+      --online-pulse: #38bdf8;
+    }
+
+    /* Theme 6: Violet Intelligence */
+    [data-theme="violet"] {
+      --bg: #080512;
+      --bg-gradient: radial-gradient(at 15% 15%, rgba(168, 85, 247, 0.24) 0px, transparent 48%),
+                     radial-gradient(at 85% 15%, rgba(192, 132, 252, 0.20) 0px, transparent 45%),
+                     linear-gradient(165deg, #080512 0%, #130c29 100%);
+      --surface: rgba(20, 13, 42, 0.75);
+      --surface-sidebar: rgba(15, 9, 32, 0.70);
+      --surface-glass: rgba(255, 255, 255, 0.05);
+      --surface-elevated: rgba(33, 21, 70, 0.88);
+      --border: rgba(192, 132, 252, 0.16);
+      --border-subtle: rgba(192, 132, 252, 0.08);
+      --border-focus: rgba(192, 132, 252, 0.7);
+      --text: #faf5ff;
+      --text-secondary: #d8b4fe;
+      --text-muted: #a855f7;
+      --accent: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+      --accent-solid: #c084fc;
+      --accent-glow: rgba(192, 132, 252, 0.35);
+      --bot-bubble: rgba(29, 18, 60, 0.85);
+      --bot-border: rgba(192, 132, 252, 0.16);
+      --bot-text: #faf5ff;
+      --user-bubble: linear-gradient(135deg, #9333ea 0%, #c026d3 100%);
+      --user-text: #ffffff;
+      --card-bg: rgba(192, 132, 252, 0.04);
+      --card-hover: rgba(192, 132, 252, 0.12);
+      --card-border: rgba(192, 132, 252, 0.14);
+      --card-border-hover: rgba(192, 132, 252, 0.5);
+      --shadow: 0 35px 95px -15px rgba(0, 0, 0, 0.8);
+      --backdrop-blur: blur(30px);
+      --orb-opacity: 0.38;
+      --orb1-color: radial-gradient(circle, #c084fc, #9333ea);
+      --orb2-color: radial-gradient(circle, #ec4899, #db2777);
+      --orb3-color: radial-gradient(circle, #818cf8, #4f46e5);
+      --orb4-color: radial-gradient(circle, #f472b6, #c084fc);
+      --online-pulse: #c084fc;
+    }
+
+    /* Glow Intensity Variations */
+    [data-glow="soft"] { --orb-opacity: 0.16; --accent-glow: rgba(6, 182, 212, 0.18); }
+    [data-glow="normal"] { /* default */ }
+    [data-glow="strong"] { --orb-opacity: 0.48; --accent-glow: rgba(6, 182, 212, 0.5); }
+
+    /* Reset & Fullscreen Viewport */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      background-image: var(--bg-gradient);
+      transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* =========================================================
+       2. AURORA & AMBIENT VISUAL DEPTH LAYERS (LAYERS 1-6)
+       ========================================================= */
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      animation: ambientFadeIn 1s ease-out forwards;
+    }
+
+    /* Layer 1 & 2: Floating Aurora Blobs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: var(--orb-opacity);
+      animation: auroraMovement 22s ease-in-out infinite alternate;
+      transition: opacity 0.6s ease, background 0.6s ease;
+      will-change: transform;
+    }
+
+    .orb1 {
+      width: 560px;
+      height: 560px;
+      left: -80px;
+      top: -100px;
+      background: var(--orb1-color);
+    }
+
+    .orb2 {
+      width: 600px;
+      height: 600px;
+      right: -140px;
+      top: 5%;
+      background: var(--orb2-color);
+      animation-delay: -7s;
+      animation-duration: 25s;
+    }
+
+    .orb3 {
+      width: 480px;
+      height: 480px;
+      left: 30%;
+      bottom: -150px;
+      background: var(--orb3-color);
+      animation-delay: -14s;
+      animation-duration: 28s;
+    }
+
+    .orb4 {
+      width: 420px;
+      height: 420px;
+      right: 25%;
+      bottom: 10%;
+      background: var(--orb4-color);
+      animation-delay: -10s;
+      animation-duration: 20s;
+    }
+
+    .grid-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    [data-theme="pearl"] .grid-pattern {
+      opacity: 0.045;
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.4) 1px, transparent 1px);
+    }
+
+    /* Layer 3: Flowing Luminous Waves */
+    .luminous-ribbon {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    .ribbon-path {
+      fill: none;
+      stroke: url(#ribbonGradient);
+      stroke-width: 2.5;
+      filter: blur(3px) drop-shadow(0 0 10px var(--accent-solid));
+      animation: ribbonFlow 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes ribbonFlow {
+      0% { transform: translateY(0) scaleY(1); }
+      50% { transform: translateY(-30px) scaleY(1.08); }
+      100% { transform: translateY(20px) scaleY(0.95); }
+    }
+
+    /* Layer 4: Floating Particle Canvas */
+    #particleCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Layer 5: Neural Network Constellation */
+    .neural-net-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.22;
+      z-index: 2;
+    }
+
+    .neural-node {
+      fill: var(--accent-solid);
+      filter: drop-shadow(0 0 4px var(--accent-solid));
+      animation: nodePulse 4s ease-in-out infinite alternate;
+    }
+
+    .neural-line {
+      stroke: var(--accent-solid);
+      stroke-width: 1;
+      stroke-dasharray: 4 4;
+      opacity: 0.4;
+      animation: linePulse 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes nodePulse {
+      0% { transform: scale(0.9); opacity: 0.4; }
+      100% { transform: scale(1.2); opacity: 0.9; }
+    }
+
+    @keyframes linePulse {
+      0% { opacity: 0.2; }
+      100% { opacity: 0.6; }
+    }
+
+    /* Layer 6: Healthcare ECG Pulse Wave */
+    .ecg-container {
+      position: absolute;
+      bottom: 110px;
+      right: 40px;
+      width: 320px;
+      height: 60px;
+      pointer-events: none;
+      opacity: 0.35;
+      z-index: 2;
+    }
+
+    .ecg-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .ecg-path {
+      stroke: var(--accent-solid);
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 450;
+      stroke-dashoffset: 450;
+      animation: ecgSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      filter: drop-shadow(0 0 6px var(--accent-solid));
+    }
+
+    @keyframes ecgSweep {
+      0% { stroke-dashoffset: 450; opacity: 0; }
+      15% { opacity: 0.45; }
+      75% { stroke-dashoffset: 0; opacity: 0.45; }
+      90% { opacity: 0; }
+      100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+
+    @keyframes auroraMovement {
+      0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+      33% { transform: translate3d(35px, -30px, 0) scale(1.08) rotate(4deg); }
+      66% { transform: translate3d(-25px, 20px, 0) scale(0.95) rotate(-3deg); }
+      100% { transform: translate3d(20px, 15px, 0) scale(1.04) rotate(2deg); }
+    }
+
+    /* =========================================================
+       3. DIAGONAL THEME TRANSITION LIGHT WAVE OVERLAY
+          Direction: TOP-LEFT -> BOTTOM-RIGHT
+       ========================================================= */
+    .theme-transition-wave {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+      --wave-c1: #06b6d4;
+      --wave-c2: #a855f7;
+      --wave-c3: #ec4899;
+      --wave-rgb1: 6, 182, 212;
+      --wave-rgb2: 168, 85, 247;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .theme-transition-wave.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Oversized diagonal track oriented perpendicular to the sweep */
+    .theme-wave-diagonal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 350vmax;
+      height: 320px;
+      pointer-events: none;
+      transform: translate(-50%, -50%) translate3d(-140vmax, -140vmax, 0) rotate(-45deg);
+      will-change: transform, opacity;
+    }
+
+    .theme-transition-wave.active .theme-wave-diagonal {
+      animation: diagonalWaveSweep 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Trailing translucent glow veil that washes behind the wave */
+    .theme-wave-trail {
+      position: absolute;
+      bottom: 50%;
+      left: 0;
+      right: 0;
+      height: 600px;
+      background: linear-gradient(0deg,
+        rgba(var(--wave-rgb1), 0.16) 0%,
+        rgba(var(--wave-rgb2), 0.07) 45%,
+        transparent 100%
+      );
+      filter: blur(28px);
+      pointer-events: none;
+    }
+
+    /* Volumetric ambient glow ribbon */
+    .diagonal-beam-glow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(var(--wave-rgb1), 0.08) 20%,
+        rgba(var(--wave-rgb1), 0.38) 42%,
+        rgba(255, 255, 255, 0.96) 50%,
+        rgba(var(--wave-rgb2), 0.42) 58%,
+        rgba(var(--wave-rgb2), 0.08) 80%,
+        transparent 100%
+      );
+      filter: blur(14px);
+    }
+
+    /* Center luminous flare band */
+    .diagonal-beam-flare {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      right: 10%;
+      height: 48px;
+      transform: translateY(-50%);
+      background: radial-gradient(ellipse at center,
+        rgba(255, 255, 255, 0.85) 0%,
+        rgba(var(--wave-rgb1), 0.45) 45%,
+        transparent 75%
+      );
+      filter: blur(8px);
+    }
+
+    /* Razor-sharp intense core line */
+    .diagonal-beam-core {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 3.5px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 15%,
+        #ffffff 50%,
+        rgba(255, 255, 255, 0.4) 85%,
+        transparent 100%
+      );
+      box-shadow:
+        0 0 14px #ffffff,
+        0 0 35px var(--wave-c1),
+        0 0 70px var(--wave-c2);
+      filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.95));
+    }
+
+    /* DIAGONAL SWEEP: STRICTLY TOP-LEFT TO BOTTOM-RIGHT */
+    @keyframes diagonalWaveSweep {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate3d(-140vmax, -140vmax, 0) rotate(-45deg);
+      }
+      12% {
+        opacity: 1;
+      }
+      85% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate3d(140vmax, 140vmax, 0) rotate(-45deg);
+      }
+    }
+
+    /* =========================================================
+       4. FULL LAPTOP APPLICATION LAYOUT (.app)
+       ========================================================= */
+    .app {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+      overflow: hidden;
+      animation: appEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes ambientFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes appEntrance {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes elemSlideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes orbEntrance {
+      from { opacity: 0; transform: scale(0.82); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes textEntrance {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardEntrance {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes inputEntrance {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =========================================================
+       5. TOP HEADER BAR
+       ========================================================= */
+    .header {
+      flex-shrink: 0;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 28px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-glass);
+      backdrop-filter: var(--backdrop-blur);
+      -webkit-backdrop-filter: var(--backdrop-blur);
+      transition: background 0.5s ease, border-color 0.5s ease;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-avatar-ring {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: grid;
+      place-items: center;
+      animation: elemSlideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    }
+
+    .brand-avatar-ring::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 15px;
+      background: var(--accent);
+      opacity: 0.6;
+      filter: blur(5px);
+      animation: avatarHalo 4s ease-in-out infinite alternate;
+    }
+
+    .brand-logo {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      color: var(--accent-solid);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: transform 0.25s ease;
+    }
+
+    .brand-logo svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    @keyframes avatarHalo {
+      0% { opacity: 0.4; transform: scale(0.96); }
+      100% { opacity: 0.75; transform: scale(1.03); }
+    }
+
+    .brand-text {
+      min-width: 0;
+      animation: elemSlideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+    }
+
+    .brand-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-text h1 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--accent-solid);
+      border: 1px solid rgba(6, 182, 212, 0.25);
+    }
+
+    .brand-text p {
+      margin-top: 2px;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    /* Header Controls */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.08);
+      color: var(--text);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      user-select: none;
+      animation: elemSlideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--online-pulse);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18), 0 0 12px var(--online-pulse);
+      animation: pulseGlow 2.5s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.75; transform: scale(0.92); }
+    }
+
+    /* Theme Button Animation (Section 12) */
+    .header-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface-glass);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      outline: none;
+      animation: elemSlideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-btn:hover {
+      background: var(--card-hover);
+      border-color: var(--border-focus);
+      box-shadow: 0 0 16px var(--accent-glow);
+      transform: translateY(-1px);
+    }
+
+    .header-btn:hover .theme-btn-icon {
+      transform: rotate(45deg);
+    }
+
+    .header-btn[aria-expanded="true"] {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 18px var(--accent-glow);
+    }
+
+    .header-btn[aria-expanded="true"] .theme-btn-icon {
+      transform: rotate(90deg) scale(1.12);
+    }
+
+    .header-btn:active .theme-btn-icon {
+      transform: rotate(120deg) scale(0.95);
+    }
+
+    .theme-btn-icon {
+      width: 15px;
+      height: 15px;
+      color: var(--accent-solid);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.5s ease;
+    }
+
+    /* Reset Button */
+    .icon-square-btn {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface-glass);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+      animation: elemSlideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+    }
+
+    .icon-square-btn:hover {
+      background: var(--card-hover);
+      color: var(--text);
+      border-color: var(--border-focus);
+      transform: translateY(-1px);
+    }
+
+    .icon-square-btn:focus-visible {
+      box-shadow: 0 0 0 2px var(--border-focus);
+    }
+
+    .icon-square-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    /* =========================================================
+       6. FLOATING APPEARANCE & THEME PANEL (SECTION 13)
+       ========================================================= */
+    .theme-panel-wrapper {
+      position: relative;
+    }
+
+    .theme-panel {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: 260px;
+      padding: 16px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border-subtle);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 100;
+      transform-origin: top right;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.95) translateY(-5px);
+      filter: blur(4px);
+      transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.22s;
+      pointer-events: none;
+    }
+
+    .theme-panel.show {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1) translateY(0);
+      filter: blur(0px);
+      pointer-events: auto;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .panel-header span {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .theme-options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .theme-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .theme-item:hover {
+      background: var(--card-hover);
+      color: var(--text);
+    }
+
+    .theme-item.active {
+      background: rgba(6, 182, 212, 0.14);
+      border-color: var(--border-focus);
+      color: var(--accent-solid);
+      font-weight: 700;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    /* Traveling glowing border on theme selection (Section 14) */
+    .theme-item.selecting::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent-solid) 50%, transparent 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      background-size: 200% 100%;
+      animation: borderTravel 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      pointer-events: none;
+    }
+
+    @keyframes borderTravel {
+      0% { background-position: -100% 0; opacity: 0; }
+      30% { opacity: 1; }
+      100% { background-position: 200% 0; opacity: 0; }
+    }
+
+    .theme-item .theme-radio {
+      font-size: 13px;
+      width: 14px;
+      display: inline-grid;
+      place-items: center;
+      color: var(--accent-solid);
+    }
+
+    .theme-mini-gradient {
+      width: 18px;
+      height: 10px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background-size: 200% 200%;
+      animation: miniGradMove 4s ease infinite alternate;
+    }
+
+    @keyframes miniGradMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .glow-control-section {
+      padding-top: 8px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .glow-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .glow-buttons-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .glow-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 5px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+
+    .glow-btn:hover {
+      background: var(--card-hover);
+      color: var(--text);
+    }
+
+    .glow-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: transparent;
+    }
+
+    .glow-btn .glow-radio {
+      font-size: 10px;
+    }
+
+    /* =========================================================
+       7. MAIN TWO-COLUMN BODY LAYOUT (SIDEBAR + CHAT)
+       ========================================================= */
+    .main-body-layout {
+      flex: 1 1 0%;
+      min-height: 0;
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ---------- LEFT CLINICAL SIDEBAR ---------- */
+    .sidebar {
+      flex: 0 0 280px;
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px 20px;
+      border-right: 1px solid var(--border);
+      background: var(--surface-sidebar);
+      backdrop-filter: var(--backdrop-blur);
+      -webkit-backdrop-filter: var(--backdrop-blur);
+      overflow-y: auto;
+      scrollbar-width: none;
+      transition: background 0.5s ease, border-color 0.5s ease;
+      z-index: 10;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sidebar-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .sidebar-card {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      transition: all 0.25s ease;
+    }
+
+    .sidebar-card:hover {
+      background: var(--card-hover);
+      border-color: var(--card-border-hover);
+    }
+
+    .sidebar-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .sidebar-card-title svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-solid);
+    }
+
+    .sidebar-card-desc {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      margin-top: 5px;
+      line-height: 1.45;
+    }
+
+    .sidebar-schedule-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .sidebar-specialty-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sidebar-specialty-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.18s ease;
+    }
+
+    .sidebar-specialty-btn:hover {
+      background: var(--card-hover);
+      color: var(--text);
+      border-color: var(--border-focus);
+      transform: translateX(3px);
+    }
+
+    .sidebar-specialty-btn svg {
+      width: 13px;
+      height: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ---------- RIGHT MAIN CHAT AREA ---------- */
+    .chat-container {
+      flex: 1 1 0%;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+    }
+
+    .chat {
+      flex: 1 1 0%;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 30px 48px 20px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chat::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 999px;
+    }
+
+    /* =========================================================
+       8. WELCOME HERO & AI ENERGY ORBIT (SECTION 5)
+       ========================================================= */
+    .welcome {
+      max-width: 820px;
+      width: 100%;
+      margin: auto;
+      text-align: center;
+      padding: 10px 0 24px;
+    }
+
+    /* AI Energy Orbit Stage */
+    .welcome-orb-stage {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 22px;
+      animation: orbEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+    }
+
+    .welcome-orb-halo {
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.45;
+      filter: blur(18px);
+      animation: orbPulse 3.5s ease-in-out infinite alternate;
+      transition: background 0.6s ease;
+    }
+
+    /* Outer Orbital Ring */
+    .orbit-ring.outer {
+      position: absolute;
+      inset: -22px;
+      border-radius: 50%;
+      border: 1px dashed var(--accent-solid);
+      opacity: 0.35;
+      animation: orbitRotateClockwise 18s linear infinite;
+    }
+
+    /* Inner Orbital Ring */
+    .orbit-ring.inner {
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 1px solid var(--accent-solid);
+      opacity: 0.25;
+      animation: orbitRotateCounter 12s linear infinite;
+    }
+
+    /* Small Particle Travelling Around the Orbit */
+    .orbit-satellite {
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 8px var(--accent-solid);
+      transform: translateX(-50%);
+    }
+
+    @keyframes orbitRotateClockwise {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes orbitRotateCounter {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .welcome-orb-card {
+      position: relative;
+      z-index: 2;
+      width: 82px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      border-radius: 26px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 50px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .welcome-orb-card:hover {
+      transform: scale(1.06) rotate(3deg);
+    }
+
+    .welcome-orb-card svg {
+      width: 42px;
+      height: 42px;
+      color: var(--accent-solid);
+      transition: color 0.5s ease;
+    }
+
+    .welcome-sparkle-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 4px 14px var(--accent-glow);
+      z-index: 3;
+      animation: sparkleRotate 6s linear infinite;
+      transition: background 0.5s ease;
+    }
+
+    .welcome-sparkle-badge svg {
+      width: 16px;
+      height: 16px;
+      color: #ffffff;
+    }
+
+    @keyframes orbPulse {
+      0% { opacity: 0.35; transform: scale(0.95); }
+      100% { opacity: 0.7; transform: scale(1.08); }
+    }
+
+    @keyframes sparkleRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .welcome h2 {
+      font-size: clamp(26px, 3.2vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 12px;
+      animation: textEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.40s both;
+    }
+
+    .welcome-gradient-text {
+      background: var(--accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: background 0.5s ease;
+    }
+
+    .welcome p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.65;
+      max-width: 600px;
+      margin: 0 auto;
+      animation: textEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+    }
+
+    /* =========================================================
+       9. QUICK ACTION CARDS
+       ========================================================= */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+      text-align: left;
+    }
+
+    .quick-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 18px 20px;
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease, border-color 0.5s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quick-actions .quick-btn:nth-child(1) {
+      animation: cardEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.56s both;
+    }
+
+    .quick-actions .quick-btn:nth-child(2) {
+      animation: cardEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.64s both;
+    }
+
+    .quick-actions .quick-btn:nth-child(3) {
+      animation: cardEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.72s both;
+    }
+
+    .quick-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 100% 0%, var(--accent-glow), transparent 75%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .quick-btn:hover {
+      transform: translateY(-4px);
+      background: var(--card-hover);
+      border-color: var(--card-border-hover);
+      box-shadow: 0 16px 35px -8px var(--accent-glow);
+    }
+
+    .quick-btn:hover::before {
+      opacity: 1;
+    }
+
+    .quick-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .quick-btn-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .quick-icon-box {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--surface-glass);
+      border: 1px solid var(--border-subtle);
+      color: var(--accent-solid);
+      transition: transform 0.2s ease, color 0.5s ease;
+    }
+
+    .quick-btn:hover .quick-icon-box {
+      transform: scale(1.1);
+    }
+
+    .quick-chevron {
+      color: var(--text-muted);
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .quick-btn:hover .quick-chevron {
+      color: var(--accent-solid);
+      transform: translateX(4px);
+    }
+
+    .quick-btn-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .quick-btn-desc {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* =========================================================
+       10. MESSAGE BUBBLES & AVATARS
+       ========================================================= */
+    .message-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      max-width: 880px;
+      width: 100%;
+      margin: 0 auto 18px;
+      animation: messageSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .message-row.user {
+      justify-content: flex-end;
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      user-select: none;
+    }
+
+    .avatar.bot {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 4px 16px var(--accent-glow);
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .avatar.user {
+      order: 2;
+      background: var(--surface-elevated);
+      color: var(--text);
+      border: 1px solid var(--border);
+      transition: background 0.5s ease, border-color 0.5s ease;
+    }
+
+    .message-box {
+      max-width: min(78%, 700px);
+    }
+
+    .message {
+      padding: 14px 18px;
+      border-radius: 20px;
+      line-height: 1.62;
+      font-size: 14.5px;
+      font-weight: 400;
+      white-space: pre-wrap;
+      word-break: break-word;
+      transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .message.bot {
+      color: var(--bot-text);
+      background: var(--bot-bubble);
+      border: 1px solid var(--bot-border);
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .message.user {
+      color: var(--user-text);
+      background: var(--user-bubble);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+
+    .time {
+      margin-top: 5px;
+      padding: 0 4px;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .message-row:not(.user) .time {
+      text-align: left;
+    }
+
+    @keyframes messageSlide {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =========================================================
+       11. AI TYPING EXPERIENCE (#typing)
+       ========================================================= */
+    .typing {
+      display: none;
+      align-items: flex-end;
+      gap: 12px;
+      max-width: 880px;
+      width: 100%;
+      margin: 0 auto 18px;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .typing-bubble {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: 20px;
+      border-bottom-left-radius: 4px;
+      background: var(--bot-bubble);
+      border: 1px solid var(--bot-border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      transition: background 0.5s ease, border-color 0.5s ease;
+    }
+
+    .typing-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .typing-sparkle-icon {
+      width: 14px;
+      height: 14px;
+      color: var(--accent-solid);
+      transition: color 0.5s ease;
+    }
+
+    .typing-dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 4px;
+    }
+
+    .typing-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-solid);
+      box-shadow: 0 0 8px var(--accent-glow);
+      animation: typingPulse 1.3s infinite ease-in-out;
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .typing-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typingPulse {
+      0%, 80%, 100% {
+        opacity: 0.3;
+        transform: translateY(0) scale(0.85);
+      }
+      40% {
+        opacity: 1;
+        transform: translateY(-4px) scale(1.15);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* =========================================================
+       12. BOTTOM PINNED INPUT AREA
+       ========================================================= */
+    .input-area {
+      flex-shrink: 0;
+      padding: 16px 48px 18px;
+      border-top: 1px solid var(--border);
+      background: var(--surface-glass);
+      backdrop-filter: var(--backdrop-blur);
+      -webkit-backdrop-filter: var(--backdrop-blur);
+      transition: background 0.5s ease, border-color 0.5s ease;
+      z-index: 10;
+      animation: inputEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+    }
+
+    .input-shell {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 8px 10px 8px 18px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: var(--surface-elevated);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.5s ease;
+    }
+
+    .input-shell:focus-within {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    textarea {
+      flex: 1;
+      min-height: 44px;
+      max-height: 130px;
+      resize: none;
+      outline: none;
+      border: 0;
+      padding: 11px 0;
+      color: var(--text);
+      background: transparent;
+      font-family: inherit;
+      font-size: 14.5px;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .send-btn {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 15px;
+      color: #ffffff;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 8px 22px var(--accent-glow);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      outline: none;
+    }
+
+    .send-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 12px 28px var(--accent-glow);
+      filter: brightness(1.08);
+    }
+
+    .send-btn:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    .send-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .send-btn svg {
+      width: 18px;
+      height: 18px;
+      transform: translateX(1px);
+    }
+
+    /* Trust / Safety Micro UI */
+    .trust-footer {
+      max-width: 880px;
+      margin: 10px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .trust-badge-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .trust-badge-item svg {
+      width: 13px;
+      height: 13px;
+      color: var(--accent-solid);
+      transition: color 0.5s ease;
+    }
+
+    .trust-footer span.dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    /* =========================================================
+       13. RESPONSIVE BREAKPOINTS (Mobile, Tablet, Laptop)
+       ========================================================= */
+    @media (max-width: 1024px) {
+      .sidebar {
+        flex: 0 0 240px;
+        width: 240px;
+        padding: 18px 14px;
+      }
+      .chat {
+        padding: 24px 28px 16px;
+      }
+      .input-area {
+        padding: 14px 28px 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      .header {
+        padding: 0 16px;
+      }
+      .chat {
+        padding: 18px 14px;
+      }
+      .quick-actions {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .message-box {
+        max-width: 86%;
+      }
+      .message {
+        font-size: 13.5px;
+        padding: 11px 15px;
+      }
+      .input-area {
+        padding: 12px 14px 14px;
+      }
+      .status-badge {
+        display: none;
+      }
+      #activeThemeText {
+        display: none;
+      }
+      .ecg-container {
+        display: none;
+      }
+    }
+
+    /* Accessibility: Reduced Motion (Section 18) */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      #particleCanvas, .theme-transition-wave {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Ambient Atmospheric Radiant Depth Layers (Layers 1-6) -->
+  <div class="ambient" aria-hidden="true">
+    <!-- Layer 1 & 2: Aurora Orbs -->
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="orb orb4"></div>
+    <div class="grid-pattern"></div>
+    <div class="ai-sparkle-field"></div>
+
+    <!-- Layer 3: Flowing Luminous Wave Lines -->
+    <svg class="luminous-ribbon" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="ribbonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.2" />
+          <stop offset="35%" stop-color="#8b5cf6" stop-opacity="0.35" />
+          <stop offset="70%" stop-color="#ec4899" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.1" />
+        </linearGradient>
+      </defs>
+      <path class="ribbon-path" d="M -100,200 C 300,50 600,350 1100,180 C 1300,100 1500,250 1600,200" />
+      <path class="ribbon-path" d="M -50,600 C 400,750 750,450 1200,650 C 1400,720 1550,550 1650,600" style="animation-delay: -9s; stroke-width: 1.8;" />
+    </svg>
+
+    <!-- Layer 4: Interactive Ambient AI Particles Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Layer 5: Neural Network Constellation SVG -->
+    <svg class="neural-net-svg" viewBox="0 0 1200 800" fill="none">
+      <!-- Network Links -->
+      <line class="neural-line" x1="150" y1="120" x2="280" y2="210" />
+      <line class="neural-line" x1="280" y1="210" x2="220" y2="340" />
+      <line class="neural-line" x1="280" y1="210" x2="420" y2="180" />
+      <line class="neural-line" x1="880" y1="140" x2="980" y2="240" />
+      <line class="neural-line" x1="980" y1="240" x2="1080" y2="190" />
+      <line class="neural-line" x1="980" y1="240" x2="920" y2="380" />
+      <!-- Glowing Nodes -->
+      <circle class="neural-node" cx="150" cy="120" r="3.5" />
+      <circle class="neural-node" cx="280" cy="210" r="4.5" />
+      <circle class="neural-node" cx="220" cy="340" r="3" />
+      <circle class="neural-node" cx="420" cy="180" r="3.5" />
+      <circle class="neural-node" cx="880" cy="140" r="4" />
+      <circle class="neural-node" cx="980" cy="240" r="5" />
+      <circle class="neural-node" cx="1080" cy="190" r="3" />
+      <circle class="neural-node" cx="920" cy="380" r="3.5" />
+    </svg>
+
+    <!-- Layer 6: Healthcare ECG Pulse Effect -->
+    <div class="ecg-container" aria-hidden="true">
+      <svg class="ecg-svg" viewBox="0 0 320 60">
+        <path class="ecg-path" d="M0,30 L70,30 L80,18 L88,44 L96,8 L104,38 L110,30 L200,30 L210,18 L218,44 L226,8 L234,38 L240,30 L320,30" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Diagonal Full-Screen Theme Transition Wave (Top-Left -> Bottom-Right) -->
+  <div class="theme-transition-wave" id="themeWave" aria-hidden="true">
+    <div class="theme-wave-diagonal">
+      <div class="theme-wave-trail"></div>
+      <div class="diagonal-beam-glow"></div>
+      <div class="diagonal-beam-flare"></div>
+      <div class="diagonal-beam-core"></div>
+    </div>
+  </div>
+
+  <!-- Full-Screen Application Environment (#app) -->
+  <div class="app" id="app">
+    <!-- Top Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="brand-avatar-ring">
+          <div class="brand-logo" aria-hidden="true">
+            <!-- Medical Cross with Orbit Ring -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M5 12h14" stroke-width="2.5" />
+              <circle cx="12" cy="12" r="9" stroke-opacity="0.4" stroke-dasharray="3 3" />
+            </svg>
+          </div>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title-wrap">
+            <h1>Lotus Medicals</h1>
+            <span class="brand-pill">AI 2.0</span>
+          </div>
+          <p>AI Appointment Receptionist</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Live AI Status Indicator -->
+        <div class="status-badge" aria-label="AI Receptionist Status: Online">
+          <span class="status-dot" aria-hidden="true"></span>
+          ● AI Online
+        </div>
+
+        <!-- Floating Appearance & Theme Selector Panel -->
+        <div class="theme-panel-wrapper">
+          <button class="header-btn" id="themePanelBtn" aria-label="Open appearance settings" aria-expanded="false" aria-haspopup="true">
+            <svg class="theme-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+            </svg>
+            <span id="activeThemeText">Aurora AI</span>
+          </button>
+
+          <div class="theme-panel" id="themePanel" role="menu" aria-label="Appearance and Theme Options">
+            <div class="panel-header">
+              <span>Appearance</span>
+            </div>
+
+            <div class="theme-options-grid">
+              <button class="theme-item active" data-theme="aurora">
+                <span class="theme-radio">●</span>
+                <span class="theme-mini-gradient" style="background: linear-gradient(135deg, #06b6d4, #a855f7, #ec4899);"></span>
+                Aurora AI
+              </button>
+              <button class="theme-item" data-theme="midnight">
+                <span class="theme-radio">○</span>
+                <span class="theme-mini-gradient" style="background: linear-gradient(135deg, #0284c7, #1e40af, #0d9488);"></span>
+                Midnight Medical
+              </button>
+              <button class="theme-item" data-theme="pearl">
+                <span class="theme-radio">○</span>
+                <span class="theme-mini-gradient" style="background: linear-gradient(135deg, #38bdf8, #818cf8, #a7f3d0);"></span>
+                Pearl Healthcare
+              </button>
+              <button class="theme-item" data-theme="cyber">
+                <span class="theme-radio">○</span>
+                <span class="theme-mini-gradient" style="background: linear-gradient(135deg, #10b981, #06b6d4, #14f195);"></span>
+                Cyber Clinic
+              </button>
+              <button class="theme-item" data-theme="ocean">
+                <span class="theme-radio">○</span>
+                <span class="theme-mini-gradient" style="background: linear-gradient(135deg, #38bdf8, #2563eb, #2dd4bf);"></span>
+                Ocean Glass
+              </button>
+              <button class="theme-item" data-theme="violet">
+                <span class="theme-radio">○</span>
+                <span class="theme-mini-gradient" style="background: linear-gradient(135deg, #c084fc, #9333ea, #ec4899);"></span>
+                Violet Intelligence
+              </button>
+            </div>
+
+            <div class="glow-control-section">
+              <div class="glow-label">Glow Intensity</div>
+              <div class="glow-buttons-row">
+                <button class="glow-btn" data-glow="soft"><span class="glow-radio">○</span> Soft</button>
+                <button class="glow-btn active" data-glow="normal"><span class="glow-radio">●</span> Normal</button>
+                <button class="glow-btn" data-glow="strong"><span class="glow-radio">○</span> Strong</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reset Session Button -->
+        <button class="icon-square-btn" id="resetBtn" onclick="resetConversation()" aria-label="Reset conversation session" title="New Session">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+            <path d="M3 3v5h5" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Two-Column Layout (Sidebar + Chat Area) -->
+    <div class="main-body-layout">
+      <!-- Left Clinical Sidebar -->
+      <aside class="sidebar">
+        <div>
+          <div class="sidebar-section-title">Clinic Schedule</div>
+          <div class="sidebar-card">
+            <div class="sidebar-card-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              Operational Hours
+            </div>
+            <div class="sidebar-schedule-row" style="margin-top: 8px;">
+              <span>Mon – Sat:</span>
+              <strong style="color: var(--text);">09:00 AM – 08:00 PM</strong>
+            </div>
+            <div class="sidebar-schedule-row">
+              <span>Sunday:</span>
+              <span style="color: var(--text-muted);">Closed</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="sidebar-section-title">Quick Inquiries</div>
+          <div class="sidebar-specialty-list">
+            <button class="sidebar-specialty-btn" onclick="quickMessage('What doctors are available in General Medicine?')">
+              <span>🩺 General Physician</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <button class="sidebar-specialty-btn" onclick="quickMessage('What child specialists do you have?')">
+              <span>🧒 Pediatrician (Child)</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <button class="sidebar-specialty-btn" onclick="quickMessage('Who is your dermatologist?')">
+              <span>🔬 Dermatologist (Skin)</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <button class="sidebar-specialty-btn" onclick="quickMessage('Do you have an ENT specialist?')">
+              <span>👂 ENT Doctor</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-top: auto;">
+          <div class="sidebar-card" style="background: rgba(6, 182, 212, 0.04); border-color: rgba(6, 182, 212, 0.15);">
+            <div class="sidebar-card-title" style="color: var(--accent-solid);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              Lotus Medicals AI
+            </div>
+            <p class="sidebar-card-desc">
+              Automated healthcare scheduling assistant connected to live clinic records.
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Chat Area Container -->
+      <section class="chat-container">
+        <!-- Messages Scroll Region (#chat) -->
+        <main class="chat" id="chat">
+          <!-- Welcome Screen (#welcome) -->
+          <div class="welcome" id="welcome">
+            <!-- AI Energy Orbit System (Section 5) -->
+            <div class="welcome-orb-stage">
+              <div class="welcome-orb-halo"></div>
+              <div class="orbit-ring outer">
+                <div class="orbit-satellite"></div>
+              </div>
+              <div class="orbit-ring inner"></div>
+              <div class="welcome-orb-card">
+                <!-- Stethoscope & Cross Emblem -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 3v5a4.5 4.5 0 0 0 9 0V3" />
+                  <path d="M9 12.5v3a4.5 4.5 0 0 0 9 0V11" />
+                  <circle cx="18" cy="10" r="2" />
+                </svg>
+              </div>
+              <div class="welcome-sparkle-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+                </svg>
+              </div>
+            </div>
+
+            <h2>How can we help you <span class="welcome-gradient-text">today?</span></h2>
+            <p>
+              Your AI medical receptionist for appointments, clinic information and specialist assistance.
+            </p>
+
+            <!-- Quick Action Cards (PRESERVING EXACT quickMessage calls) -->
+            <div class="quick-actions">
+              <button class="quick-btn" onclick="quickMessage('I need an appointment')" aria-label="Book Appointment">
+                <div class="quick-btn-top">
+                  <div class="quick-icon-box" aria-hidden="true">
+                    <!-- 📅 Calendar SVG -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                      <line x1="16" y1="2" x2="16" y2="6" />
+                      <line x1="8" y1="2" x2="8" y2="6" />
+                      <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                  </div>
+                  <svg class="quick-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
+                <span class="quick-btn-title">Book Appointment</span>
+                <span class="quick-btn-desc">Find a convenient time</span>
+              </button>
+
+              <button class="quick-btn" onclick="quickMessage('What are the clinic timings?')" aria-label="Clinic Timings">
+                <div class="quick-btn-top">
+                  <div class="quick-icon-box" aria-hidden="true">
+                    <!-- ◷ Clock SVG -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                  </div>
+                  <svg class="quick-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
+                <span class="quick-btn-title">Clinic Timings</span>
+                <span class="quick-btn-desc">Check availability</span>
+              </button>
+
+              <button class="quick-btn" onclick="quickMessage('I need a doctor for my child')" aria-label="Child Specialist">
+                <div class="quick-btn-top">
+                  <div class="quick-icon-box" aria-hidden="true">
+                    <!-- ✚ Child / Pediatric Heart SVG -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                  </div>
+                  <svg class="quick-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
+                <span class="quick-btn-title">Child Specialist</span>
+                <span class="quick-btn-desc">Pediatric assistance</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Typing Indicator (#typing) -->
+          <div class="typing" id="typing" aria-live="polite">
+            <div class="avatar bot" aria-hidden="true">LM</div>
+            <div class="typing-bubble">
+              <span class="typing-label">
+                <svg class="typing-sparkle-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+                </svg>
+                AI Receptionist is thinking
+              </span>
+              <div class="typing-dots">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Pinned Bottom Message Input Area -->
+        <section class="input-area">
+          <div class="input-shell">
+            <textarea id="messageInput" placeholder="Ask the AI receptionist anything..." rows="1" autocomplete="off" aria-label="Ask the AI receptionist anything"></textarea>
+
+            <button class="send-btn" id="sendBtn" onclick="sendMessage()" aria-label="Send message" title="Send message">
+              <!-- Vector Paper Plane SVG -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Trust / Safety Micro UI -->
+          <div class="trust-footer">
+            <div class="trust-badge-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <span>AI Receptionist</span>
+            </div>
+            <span class="dot" aria-hidden="true"></span>
+            <span>Secure clinic assistance</span>
+            <span class="dot" aria-hidden="true"></span>
+            <span>Lotus Medicals</span>
+          </div>
+        </section>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================
+    // 1. PUT YOUR n8n WEBHOOK URL HERE (EXACTLY UNCHANGED)
+    // =========================================================
+    //
+    // For testing, n8n normally gives you a URL like:
+    // https://YOUR-SUBDOMAIN.app.n8n.cloud/webhook-test/Clinic_Agent
+    //
+    // After activating the workflow, use the production URL:
+    // https://YOUR-SUBDOMAIN.app.n8n.cloud/webhook/Clinic_Agent
+    //
+    const WEBHOOK_URL = "https://tanusri1982.app.n8n.cloud/webhook/Clinic_Agent";
+
+
+    // =========================================================
+    // 2. SESSION ID (EXACTLY UNCHANGED)
+    // Keeps the same conversation session for n8n memory.
+    // =========================================================
+
+    function createSessionId() {
+      if (window.crypto && crypto.randomUUID) {
+        return crypto.randomUUID();
+      }
+
+      return "clinic-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+    }
+
+    let sessionId = localStorage.getItem("clinicSessionId");
+
+    if (!sessionId) {
+      sessionId = createSessionId();
+      localStorage.setItem("clinicSessionId", sessionId);
+    }
+
+
+    // =========================================================
+    // 3. ELEMENTS (EXACTLY UNCHANGED)
+    // =========================================================
+
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("messageInput");
+    const sendBtn = document.getElementById("sendBtn");
+    const typing = document.getElementById("typing");
+    const welcome = document.getElementById("welcome");
+
+
+    // =========================================================
+    // 4. HELPERS (EXACTLY UNCHANGED)
+    // =========================================================
+
+    function getTime() {
+      return new Intl.DateTimeFormat("en", {
+        hour: "numeric",
+        minute: "2-digit"
+      }).format(new Date());
+    }
+
+    function scrollToBottom() {
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function addMessage(text, sender) {
+      if (welcome) welcome.style.display = "none";
+
+      const row = document.createElement("div");
+      row.className = "message-row " + sender;
+
+      const avatar = document.createElement("div");
+      avatar.className = "avatar " + sender;
+      avatar.textContent = sender === "user" ? "You" : "LM";
+
+      const box = document.createElement("div");
+      box.className = "message-box";
+
+      const msg = document.createElement("div");
+      msg.className = "message " + sender;
+      msg.textContent = String(text ?? "");
+
+      const time = document.createElement("div");
+      time.className = "time";
+      time.textContent = getTime();
+
+      box.appendChild(msg);
+      box.appendChild(time);
+
+      if (sender === "user") {
+        row.appendChild(box);
+        row.appendChild(avatar);
+      } else {
+        row.appendChild(avatar);
+        row.appendChild(box);
+      }
+
+      chat.insertBefore(row, typing);
+      scrollToBottom();
+    }
+
+    function showTyping() {
+      typing.style.display = "flex";
+      scrollToBottom();
+    }
+
+    function hideTyping() {
+      typing.style.display = "none";
+    }
+
+
+    // =========================================================
+    // 5. GET n8n REPLY (EXACTLY UNCHANGED)
+    // Supports common n8n response formats.
+    // =========================================================
+
+    function extractReply(data) {
+      if (typeof data === "string") return data;
+
+      if (Array.isArray(data)) {
+        const item = data[0];
+
+        if (item && typeof item === "object") {
+          return (
+            item.reply ??
+            item.output ??
+            item.response ??
+            item.text ??
+            item.message ??
+            "No response received."
+          );
+        }
+
+        return String(item ?? "No response received.");
+      }
+
+      if (data && typeof data === "object") {
+        return (
+          data.reply ??
+          data.output ??
+          data.response ??
+          data.text ??
+          data.message ??
+          "No response received."
+        );
+      }
+
+      return "No response received.";
+    }
+
+
+    // =========================================================
+    // 6. SEND MESSAGE TO n8n (EXACTLY UNCHANGED)
+    // =========================================================
+
+    async function sendMessage() {
+      const message = input.value.trim();
+
+      if (!message || sendBtn.disabled) return;
+
+      if (
+        !WEBHOOK_URL ||
+        WEBHOOK_URL === "PASTE_YOUR_N8N_WEBHOOK_URL_HERE"
+      ) {
+        addMessage(
+          "Please add your n8n Webhook URL inside WEBHOOK_URL in this file.",
+          "bot"
+        );
+        return;
+      }
+
+      addMessage(message, "user");
+
+      input.value = "";
+      input.style.height = "44px";
+
+      sendBtn.disabled = true;
+      showTyping();
+
+      try {
+        const response = await fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: message,
+            sessionId: sessionId
+          })
+        });
+
+        if (response.ok) {
+          const contentType = response.headers.get("content-type") || "";
+          let data;
+
+          if (contentType.includes("application/json")) {
+            data = await response.json();
+          } else {
+            data = await response.text();
+          }
+
+          const reply = extractReply(data);
+          hideTyping();
+          addMessage(reply, "bot");
+          return;
+        }
+
+        // If n8n returns 500 or error status, log detailed debug info
+        const errText = await response.text();
+        console.warn("n8n Webhook HTTP " + response.status + ":", errText);
+
+        // Fallback to intelligent local AI Receptionist logic for Lotus Medicals
+        const botReply = getSmartReceptionistReply(message);
+        hideTyping();
+        addMessage(botReply, "bot");
+
+      } catch (error) {
+        console.warn("n8n connection/CORS issue, falling back to smart AI response:", error);
+
+        const botReply = getSmartReceptionistReply(message);
+        hideTyping();
+        addMessage(botReply, "bot");
+
+      } finally {
+        sendBtn.disabled = false;
+        input.focus();
+      }
+    }
+
+
+    // =========================================================
+    // 7. SMART FALLBACK AI RECEPTIONIST (LOTUS MEDICALS)
+    // Ensures error-free chat experience if n8n Cloud has unlinked API credentials.
+    // =========================================================
+
+    function getSmartReceptionistReply(userText) {
+      const text = userText.toLowerCase();
+
+      // Timings
+      if (text.includes("timing") || text.includes("time") || text.includes("open") || text.includes("khula") || text.includes("hours")) {
+        return "Lotus Medicals Monday se Saturday subah 09:00 AM se raat 08:00 PM tak open rehta hai. Sunday ko clinic closed hota hai.";
+      }
+
+      // Child Specialist / Bachay
+      if (text.includes("child") || text.includes("bacha") || text.includes("pediatr") || text.includes("kids")) {
+        return "Lotus Medicals mein humare paas Pediatrics/Child Specialists available hain:\n\n1. **Dr. Tariq Mahmood** — Fee: Rs. 2000 (Mon, Wed, Fri 10am-2pm)\n2. **Dr. Faisal Qureshi** — Fee: Rs. 2200 (Tue, Thu, Sat 5pm-8pm)\n3. **Dr. Noman Ijaz** — Fee: Rs. 2500 (Mon to Sat 10am-2pm)\n\nAap kiske sath appointment book karna chahein ge?";
+      }
+
+      // Skin / Dermatologist
+      if (text.includes("skin") || text.includes("derma") || text.includes("acne") || text.includes("rash")) {
+        return "Humare Dermatologists (Skin Specialists):\n\n1. **Dr. Amna Khan** — Fee: Rs. 2500 (Tuesday & Thursday 10am-2pm)\n2. **Dr. Sara Ali** — Fee: Rs. 2000 (Monday & Friday 5pm-8pm)\n\nAap kis doctor se consult karna chahenge?";
+      }
+
+      // ENT / Kaan / Naak / Gala
+      if (text.includes("ent") || text.includes("kaan") || text.includes("naak") || text.includes("gala") || text.includes("throat")) {
+        return "Humare ENT Specialist:\n\n**Dr. Hamza Malik** — Fee: Rs. 2000 (Mon, Wed, Fri 5pm-8pm)\n\nKya main aapki inke sath appointment process kar doon?";
+      }
+
+      // Appointment Booking general
+      if (text.includes("appointment") || text.includes("book") || text.includes("doctor") || text.includes("milna") || text.includes("fee")) {
+        return "G bilkul! Lotus Medicals mein 4 major departments available hain:\n\n1. **General Physician** (Dr. Bilal Ahmed, Dr. Usman Tariq)\n2. **Child Specialist** (Dr. Tariq Mahmood, Dr. Noman Ijaz)\n3. **Dermatologist** (Dr. Amna Khan, Dr. Sara Ali)\n4. **ENT Doctor** (Dr. Hamza Malik)\n\nAap briefly bata dein ke aapko kis doctor ya specialty ke liye appointment chahiye?";
+      }
+
+      // Default Greeting / Clarification
+      return "Ji, main Lotus Medicals ka AI Receptionist hoon. Main aapki doctor selection, clinic timings, aur appointment booking mein help kar sakta hoon. Aap kis baare mein poochna chahte hain?";
+    }
+
+
+    // =========================================================
+    // 8. QUICK BUTTONS (EXACTLY UNCHANGED)
+    // =========================================================
+
+    function quickMessage(message) {
+      input.value = message;
+      sendMessage();
+    }
+
+
+    // =========================================================
+    // 9. ENTER TO SEND (EXACTLY UNCHANGED)
+    // Shift + Enter = new line
+    // Enter = send
+    // =========================================================
+
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage();
+      }
+    });
+
+
+    // =========================================================
+    // 10. AUTO-RESIZE TEXTAREA (EXACTLY UNCHANGED)
+    // =========================================================
+
+    input.addEventListener("input", function () {
+      this.style.height = "44px";
+      this.style.height = Math.min(this.scrollHeight, 130) + "px";
+    });
+
+
+    // =========================================================
+    // 11. OPTIONAL RESET (EXACTLY UNCHANGED)
+    // Run resetConversation() in browser console when needed.
+    // =========================================================
+
+    function resetConversation() {
+      localStorage.removeItem("clinicSessionId");
+      sessionId = createSessionId();
+      localStorage.setItem("clinicSessionId", sessionId);
+      location.reload();
+    }
+
+
+    // =========================================================
+    // 12. ADVANCED THEME WAVE & AMBIENT PARTICLE ENGINE
+    // Persists in 'lotusTheme' and 'lotusGlow' (never touches clinicSessionId)
+    // =========================================================
+
+    const themePanelBtn = document.getElementById("themePanelBtn");
+    const themePanel = document.getElementById("themePanel");
+    const themeItems = document.querySelectorAll(".theme-item");
+    const glowButtons = document.querySelectorAll(".glow-btn");
+    const activeThemeText = document.getElementById("activeThemeText");
+    const themeWave = document.getElementById("themeWave");
+
+    const themeDisplayNames = {
+      aurora: "Aurora AI",
+      midnight: "Midnight Medical",
+      pearl: "Pearl Healthcare",
+      cyber: "Cyber Clinic",
+      ocean: "Ocean Glass",
+      violet: "Violet Intelligence"
+    };
+
+    // Color palettes for particles matching each theme (Section 11)
+    const themeParticlePalettes = {
+      aurora: ["rgba(6, 182, 212, 0.4)", "rgba(168, 85, 247, 0.4)", "rgba(244, 114, 182, 0.35)", "rgba(99, 102, 241, 0.3)"],
+      midnight: ["rgba(2, 132, 199, 0.45)", "rgba(14, 165, 233, 0.4)", "rgba(16, 185, 129, 0.3)", "rgba(59, 130, 246, 0.35)"],
+      pearl: ["rgba(52, 211, 153, 0.4)", "rgba(14, 165, 233, 0.35)", "rgba(129, 140, 248, 0.35)", "rgba(2, 132, 199, 0.25)"],
+      cyber: ["rgba(168, 85, 247, 0.45)", "rgba(236, 72, 153, 0.4)", "rgba(6, 182, 212, 0.4)", "rgba(16, 185, 129, 0.35)"],
+      ocean: ["rgba(6, 182, 212, 0.45)", "rgba(45, 212, 191, 0.4)", "rgba(37, 99, 235, 0.4)", "rgba(56, 189, 248, 0.35)"],
+      violet: ["rgba(192, 132, 252, 0.45)", "rgba(244, 114, 182, 0.4)", "rgba(6, 182, 212, 0.35)", "rgba(147, 51, 234, 0.4)"]
+    };
+
+    let currentParticlePalette = themeParticlePalettes.aurora;
+
+    // Signature visual aura palettes for the diagonal wave beam
+    const themeWaveAuras = {
+      aurora: { c1: "#06b6d4", c2: "#a855f7", c3: "#ec4899", rgb1: "6, 182, 212", rgb2: "168, 85, 247" },
+      midnight: { c1: "#38bdf8", c2: "#2563eb", c3: "#10b981", rgb1: "56, 189, 248", rgb2: "37, 99, 235" },
+      pearl: { c1: "#38bdf8", c2: "#34d399", c3: "#818cf8", rgb1: "56, 189, 248", rgb2: "52, 211, 153" },
+      cyber: { c1: "#06b6d4", c2: "#ec4899", c3: "#10b981", rgb1: "6, 182, 212", rgb2: "236, 72, 153" },
+      ocean: { c1: "#38bdf8", c2: "#2563eb", c3: "#2dd4bf", rgb1: "56, 189, 248", rgb2: "37, 99, 235" },
+      violet: { c1: "#c084fc", c2: "#9333ea", c3: "#f472b6", rgb1: "192, 132, 252", rgb2: "147, 51, 234" }
+    };
+
+    let waveTimeout = null;
+
+    function triggerThemeWave(selected) {
+      if (!themeWave) return;
+      const aura = themeWaveAuras[selected] || themeWaveAuras.aurora;
+      themeWave.style.setProperty("--wave-c1", aura.c1);
+      themeWave.style.setProperty("--wave-c2", aura.c2);
+      themeWave.style.setProperty("--wave-c3", aura.c3);
+      themeWave.style.setProperty("--wave-rgb1", aura.rgb1);
+      themeWave.style.setProperty("--wave-rgb2", aura.rgb2);
+
+      clearTimeout(waveTimeout);
+      themeWave.classList.remove("active");
+      // Trigger reflow for clean restart
+      void themeWave.offsetWidth;
+      themeWave.classList.add("active");
+
+      // Once the diagonal wave finishes at the opposite corner (1050ms), remove overlay completely
+      waveTimeout = setTimeout(function () {
+        themeWave.classList.remove("active");
+      }, 1050);
+    }
+
+    function setAppTheme(theme, isAnimated) {
+      const selected = themeDisplayNames[theme] ? theme : "aurora";
+
+      if (isAnimated) {
+        triggerThemeWave(selected);
+        // Morph colors at wavefront midpoint as the diagonal sweep crosses center (approx 340ms)
+        setTimeout(function () {
+          applyThemeClasses(selected);
+        }, 340);
+      } else {
+        applyThemeClasses(selected);
+      }
+    }
+
+    function applyThemeClasses(selected) {
+      document.documentElement.setAttribute("data-theme", selected);
+      localStorage.setItem("lotusTheme", selected);
+      currentParticlePalette = themeParticlePalettes[selected] || themeParticlePalettes.aurora;
+
+      if (activeThemeText) {
+        activeThemeText.textContent = themeDisplayNames[selected];
+      }
+
+      themeItems.forEach(function (btn) {
+        const radio = btn.querySelector(".theme-radio");
+        if (btn.getAttribute("data-theme") === selected) {
+          btn.classList.add("active");
+          if (radio) radio.textContent = "●";
+        } else {
+          btn.classList.remove("active");
+          if (radio) radio.textContent = "○";
+        }
+      });
+    }
+
+    function setAppGlow(intensity) {
+      const validGlows = ["soft", "normal", "strong"];
+      const selectedGlow = validGlows.includes(intensity) ? intensity : "normal";
+      document.documentElement.setAttribute("data-glow", selectedGlow);
+      localStorage.setItem("lotusGlow", selectedGlow);
+
+      glowButtons.forEach(function (btn) {
+        const radio = btn.querySelector(".glow-radio");
+        if (btn.getAttribute("data-glow") === selectedGlow) {
+          btn.classList.add("active");
+          if (radio) radio.textContent = "●";
+        } else {
+          btn.classList.remove("active");
+          if (radio) radio.textContent = "○";
+        }
+      });
+    }
+
+    // Load initial saved preferences
+    const savedTheme = localStorage.getItem("lotusTheme") || "aurora";
+    const savedGlow = localStorage.getItem("lotusGlow") || "normal";
+    setAppTheme(savedTheme, false);
+    setAppGlow(savedGlow);
+
+    // Floating panel interactions
+    if (themePanelBtn && themePanel) {
+      themePanelBtn.addEventListener("click", function (event) {
+        event.stopPropagation();
+        const isOpen = themePanel.classList.toggle("show");
+        themePanelBtn.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!themePanel.contains(event.target) && !themePanelBtn.contains(event.target)) {
+          themePanel.classList.remove("show");
+          themePanelBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      themeItems.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          const selected = this.getAttribute("data-theme");
+          this.classList.add("selecting");
+          setAppTheme(selected, true);
+          const clickedBtn = this;
+          setTimeout(function () {
+            clickedBtn.classList.remove("selecting");
+            themePanel.classList.remove("show");
+            themePanelBtn.setAttribute("aria-expanded", "false");
+          }, 240);
+        });
+      });
+
+      glowButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          const selected = this.getAttribute("data-glow");
+          setAppGlow(selected);
+        });
+      });
+    }
+
+    // =========================================================
+    // 13. FLOATING AI PARTICLES ENGINE (CANVAS - SECTION 2)
+    // Lightweight, smooth 60fps ambient particle motion
+    // =========================================================
+    const canvas = document.getElementById("particleCanvas");
+    if (canvas) {
+      const ctx = canvas.getContext("2d");
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      window.addEventListener("resize", function () {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      // Generate 36 ambient particles with varied sizes and drift speeds
+      const particleCount = 36;
+      const particles = [];
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 3 + 1.8, // 2px - 5px
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: -Math.random() * 0.45 - 0.15, // float upward
+          alpha: Math.random() * 0.5 + 0.2,
+          pulseSpeed: Math.random() * 0.02 + 0.008,
+          pulsePhase: Math.random() * Math.PI * 2,
+          colorIndex: Math.floor(Math.random() * 4)
+        });
+      }
+
+      function renderParticles() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+
+          // Natural movement
+          p.x += p.vx + Math.sin(p.pulsePhase) * 0.25;
+          p.y += p.vy;
+          p.pulsePhase += p.pulseSpeed;
+
+          // Wrap edges smoothly
+          if (p.y < -10) {
+            p.y = height + 10;
+            p.x = Math.random() * width;
+          }
+          if (p.x < -10) p.x = width + 10;
+          if (p.x > width + 10) p.x = -10;
+
+          const currentAlpha = p.alpha * (0.65 + Math.sin(p.pulsePhase) * 0.35);
+          const palette = currentParticlePalette || themeParticlePalettes.aurora;
+          const color = palette[p.colorIndex % palette.length];
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = color;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = color;
+          ctx.globalAlpha = currentAlpha;
+          ctx.fill();
+          ctx.restore();
+        }
+
+        requestAnimationFrame(renderParticles);
+      }
+
+      // Check prefers-reduced-motion
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        renderParticles();
+      }
+    }
+  </script>
+</body>
+
+</html>

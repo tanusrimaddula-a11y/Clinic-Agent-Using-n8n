@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Johar Town Medicare | AI Receptionist</title>
+
+<!-- Inter 400 / 500 / 600 / 700 / 800 -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    color-scheme: dark;
+    --brand:#3D81E3;
+    --teal:#00d2ff;
+    --bg:#0a0a0f;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+
+  html,body{ height:100%; }
+
+  body{
+    font-family:'Inter', system-ui, -apple-system, sans-serif;
+    background:var(--bg);
+    color:#fff;
+    min-height:100vh;
+    min-height:100dvh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px 16px;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:rgba(61,129,227,.4); }
+
+  /* ============================================
+     GLOBAL ANIMATED BACKGROUND (fixed, z-0)
+     ============================================ */
+  .bg-scene{
+    position:fixed; inset:0;
+    z-index:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+
+  /* 3D gradient mesh — soft blurred blobs */
+  .blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.35;
+    will-change:transform;
+  }
+  .blob-1{
+    width:560px; height:560px;
+    background:var(--brand);
+    top:-160px; left:-140px;
+    animation:drift-1 24s ease-in-out infinite alternate;
+  }
+  .blob-2{
+    width:480px; height:480px;
+    background:var(--teal);
+    bottom:-180px; right:-120px;
+    animation:drift-2 28s ease-in-out infinite alternate;
+  }
+  .blob-3{
+    width:420px; height:420px;
+    background:var(--brand);
+    top:42%; left:52%;
+    opacity:.22;
+    animation:drift-3 32s ease-in-out infinite alternate;
+  }
+  @keyframes drift-1{
+    0%   { transform:translate(0,0) scale(1); }
+    50%  { transform:translate(140px,90px) scale(1.15); }
+    100% { transform:translate(70px,-50px) scale(.95); }
+  }
+  @keyframes drift-2{
+    0%   { transform:translate(0,0) scale(1); }
+    50%  { transform:translate(-120px,-80px) scale(1.1); }
+    100% { transform:translate(-60px,60px) scale(1.2); }
+  }
+  @keyframes drift-3{
+    0%   { transform:translate(0,0) scale(1); }
+    100% { transform:translate(-160px,-70px) scale(1.25); }
+  }
+
+  /* faint animated grid beneath the blobs */
+  .bg-grid{
+    position:absolute; inset:-60px;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:56px 56px;
+    -webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 45%, #000 25%, transparent 78%);
+    mask-image:radial-gradient(ellipse 75% 65% at 50% 45%, #000 25%, transparent 78%);
+    animation:grid-pan 36s linear infinite;
+  }
+  @keyframes grid-pan{
+    from{ background-position:0 0, 0 0; }
+    to  { background-position:56px 112px, 112px 56px; }
+  }
+
+  /* soft vignette so the chat card stays readable */
+  .bg-vignette{
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse at center, transparent 38%, rgba(10,10,15,.72) 100%);
+  }
+
+  /* ============================================
+     LIQUID GLASS UTILITY
+     ============================================ */
+  .liquid-glass{
+    background:rgba(255,255,255,0.03);
+    backdrop-filter:blur(20px) saturate(150%);
+    -webkit-backdrop-filter:blur(20px) saturate(150%);
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:inset 0 1px 1px rgba(255,255,255,0.1), 0 20px 60px rgba(0,0,0,0.5);
+    border-radius:24px;
+  }
+
+  /* ============================================
+     CHAT CARD (max-w-2xl, centered)
+     ============================================ */
+  .app{
+    position:relative;
+    z-index:10;
+    width:100%;
+    max-width:42rem;
+    height:min(880px, calc(100vh - 48px));
+    height:min(880px, calc(100dvh - 48px));
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+  }
+
+  /* ---------- Header bar ---------- */
+  .header{
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:16px 24px;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+  }
+  .clinic{ display:flex; align-items:center; gap:14px; min-width:0; }
+  .avatar{
+    width:44px; height:44px; flex-shrink:0;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--brand), var(--teal));
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:15px; color:#fff;
+    box-shadow:0 0 0 1px rgba(255,255,255,.12), 0 8px 24px rgba(61,129,227,.45);
+  }
+  .clinic-name{ font-size:18px; font-weight:600; color:#fff; line-height:1.25; }
+  .clinic-sub{ font-size:12px; color:rgba(255,255,255,.5); margin-top:2px; }
+  .status{
+    display:flex; align-items:center; gap:8px; flex-shrink:0;
+    font-size:14px; color:rgba(255,255,255,.7);
+  }
+  .status-dot{
+    width:8px; height:8px; border-radius:50%;
+    background:#22c55e;
+    box-shadow:0 0 10px rgba(34,197,94,.9);
+    animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite;
+  }
+  @keyframes pulse{ 0%,100%{ opacity:1 } 50%{ opacity:.45 } }
+
+  /* ---------- Chat body ---------- */
+  .chat{
+    flex:1;
+    min-height:0;
+    overflow-y:auto;
+    padding:40px 24px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.15) transparent;
+  }
+  @media (min-height:700px){ .chat{ min-height:500px; } }
+  .chat::-webkit-scrollbar{ width:6px; }
+  .chat::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.12); border-radius:999px; }
+  .chat::-webkit-scrollbar-track{ background:transparent; }
+
+  /* hero / welcome */
+  .hero{ max-width:28rem; padding:20px 0 8px; }
+  .hero.hidden{ display:none; }
+  .hero-icon{
+    width:76px; height:76px;
+    border-radius:18px;
+    margin:0 auto 22px;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff;
+    background:linear-gradient(135deg, rgba(61,129,227,.35), rgba(0,210,255,.15));
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 16px 48px rgba(61,129,227,.35), inset 0 1px 1px rgba(255,255,255,.2);
+    animation:float-y 3s ease-in-out infinite;
+  }
+  @keyframes float-y{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-10px) } }
+  .hero h2{ font-size:24px; font-weight:700; letter-spacing:-.02em; color:#fff; }
+  .hero p{
+    margin:12px auto 0;
+    max-width:28rem;
+    font-size:14px; line-height:1.7;
+    color:rgba(255,255,255,.5);
+  }
+  .quick-row{
+    margin-top:26px;
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
+  }
+  .pill{
+    cursor:pointer;
+    font-family:inherit;
+    font-size:14px; font-weight:500;
+    color:rgba(255,255,255,.85);
+    padding:10px 20px;
+    border-radius:9999px;
+    transition:transform .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .pill:hover{
+    transform:scale(1.05);
+    background:rgba(255,255,255,.07);
+    border-color:rgba(61,129,227,.55);
+  }
+  .pill:active{ transform:scale(.97); }
+
+  /* messages */
+  .messages{ width:100%; max-width:40rem; display:flex; flex-direction:column; }
+  .row{
+    display:flex; width:100%;
+    margin-top:14px;
+    animation:msg-in .4s cubic-bezier(.21,1.02,.73,1) both;
+  }
+  .row.user{ justify-content:flex-end; }
+  .bubble{
+    max-width:80%;
+    padding:12px 16px;
+    font-size:14px; line-height:1.65;
+    text-align:left;
+    white-space:pre-wrap; word-break:break-word;
+  }
+  .bubble.bot{
+    border-radius:16px;
+    border-bottom-left-radius:4px;
+  }
+  .bubble.user{
+    background:var(--brand);
+    color:#fff;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:16px;
+    border-bottom-right-radius:4px;
+    box-shadow:0 8px 24px rgba(61,129,227,.35);
+  }
+  @keyframes msg-in{
+    from{ opacity:0; transform:translateY(12px); }
+    to  { opacity:1; transform:translateY(0); }
+  }
+
+  /* typing indicator — 3 bouncing dots in a glass bubble */
+  .typing{ display:none; width:100%; margin-top:14px; }
+  .typing.show{ display:flex; animation:msg-in .3s ease both; }
+  .typing .bubble{ display:inline-flex; align-items:center; gap:6px; padding:16px 18px; }
+  .tdot{
+    width:6px; height:6px; border-radius:50%;
+    background:rgba(255,255,255,.75);
+    animation:tdot-bounce 1.2s ease-in-out infinite;
+  }
+  .tdot:nth-child(2){ animation-delay:.15s; }
+  .tdot:nth-child(3){ animation-delay:.3s; }
+  @keyframes tdot-bounce{
+    0%,60%,100%{ transform:translateY(0); opacity:.35; }
+    30%{ transform:translateY(-5px); opacity:1; }
+  }
+
+  /* ---------- Input bar ---------- */
+  .input-bar{
+    flex-shrink:0;
+    display:flex; align-items:center; gap:12px;
+    padding:16px;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-top:1px solid rgba(255,255,255,.1);
+  }
+  .field{
+    flex:1; min-width:0;
+    height:46px; max-height:130px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:9999px;
+    padding:12px 20px;
+    color:#fff;
+    font-family:inherit; font-size:14px; line-height:1.5;
+    resize:none; outline:none;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field::placeholder{ color:rgba(255,255,255,.3); }
+  .field:focus{
+    border-color:rgba(61,129,227,.6);
+    box-shadow:0 0 0 3px rgba(61,129,227,.15);
+  }
+  .send{
+    width:44px; height:44px; flex-shrink:0;
+    border:none; border-radius:50%;
+    background:#fff; color:#000;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:background .2s ease, transform .15s ease;
+  }
+  .send:hover{ background:rgba(255,255,255,.9); }
+  .send:active{ transform:scale(.95); }
+  .send:disabled{ opacity:.5; cursor:not-allowed; }
+
+  /* ============================================
+     MOBILE — full width / full height card
+     ============================================ */
+  @media (max-width:640px){
+    body{ padding:0; }
+    .app{
+      height:100vh;
+      height:100dvh;
+      max-width:none;
+      border-radius:0;
+      border-left:none; border-right:none;
+    }
+    .header{ padding:14px 16px; }
+    .chat{ padding:28px 16px; }
+    .bubble{ max-width:88%; }
+    .hero h2{ font-size:22px; }
+    .input-bar{ padding:12px 14px; }
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- ============ GLOBAL ANIMATED BACKGROUND ============ -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="bg-vignette"></div>
+  </div>
+
+  <!-- ============ CHAT CARD ============ -->
+  <main class="app liquid-glass">
+
+    <!-- Header bar -->
+    <header class="header">
+      <div class="clinic">
+        <div class="avatar" id="avatar">JM</div>
+        <div>
+          <div class="clinic-name" id="clinicName">Johar Town Medicare</div>
+          <div class="clinic-sub">AI Appointment Receptionist</div>
+        </div>
+      </div>
+      <div class="status">
+        <span class="status-dot"></span>
+        Online
+      </div>
+    </header>
+
+    <!-- Chat body -->
+    <section class="chat" id="chat" aria-live="polite">
+
+      <div class="hero" id="hero">
+        <div class="hero-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="M12 5v14"/>
+          </svg>
+        </div>
+        <h2>How can we help you?</h2>
+        <p>Main aapko doctor select karne, availability check karne aur appointment book karne mein help kar sakta hoon.</p>
+
+        <div class="quick-row">
+          <button class="pill liquid-glass" onclick="sendPrompt('Book Appointment')">Book Appointment</button>
+          <button class="pill liquid-glass" onclick="sendPrompt('Clinic Timings')">Clinic Timings</button>
+          <button class="pill liquid-glass" onclick="sendPrompt('Child Specialist')">Child Specialist</button>
+        </div>
+      </div>
+
+      <div class="messages" id="messages"></div>
+
+      <div class="typing" id="typing">
+        <div class="bubble bot liquid-glass">
+          <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Input bar -->
+    <footer class="input-bar">
+      <textarea id="input" class="field" rows="1" placeholder="Apna message likhein..." autocomplete="off"></textarea>
+      <button class="send" id="sendBtn" aria-label="Send message">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>
+        </svg>
+      </button>
+    </footer>
+
+  </main>
+
+<script>
+  // =========================================================
+  // 1. CONFIG — edit only here
+  //    For "Lotus Medicals": change CLINIC_NAME to "Lotus Medicals"
+  //    and CLINIC_INITIALS to "LM"
+  // =========================================================
+  const CONFIG = {
+    CLINIC_NAME: "Lotus Medicals 🤖",
+    CLINIC_INITIALS: "LM",
+    WEBHOOK_URL: "https://tanusri1982.app.n8n.cloud/webhook/Clinic_Agent"
+  };
+
+  // Apply config to the UI
+  document.title = CONFIG.CLINIC_NAME + " | AI Receptionist";
+  document.getElementById("avatar").textContent = CONFIG.CLINIC_INITIALS;
+  document.getElementById("clinicName").textContent = CONFIG.CLINIC_NAME;
+
+  // =========================================================
+  // 2. SESSION ID
+  // Same session ID is sent with every message so n8n memory
+  // can maintain the appointment conversation.
+  // =========================================================
+  let sessionId = localStorage.getItem("clinicSessionId");
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    localStorage.setItem("clinicSessionId", sessionId);
+  }
+
+  // =========================================================
+  // 3. DOM ELEMENTS
+  // =========================================================
+  const chat     = document.getElementById("chat");
+  const messages = document.getElementById("messages");
+  const hero     = document.getElementById("hero");
+  const typing   = document.getElementById("typing");
+  const input    = document.getElementById("input");
+  const sendBtn  = document.getElementById("sendBtn");
+
+  let isPending = false;
+
+  // =========================================================
+  // 4. ADD MESSAGE (fade + slide-in animation)
+  // =========================================================
+  function addMessage(text, sender) {
+    const row = document.createElement("div");
+    row.className = "row " + sender;
+
+    const bubble = document.createElement("div");
+    bubble.className = sender === "user"
+      ? "bubble user"
+      : "bubble bot liquid-glass";
+    bubble.textContent = text;
+
+    row.appendChild(bubble);
+    messages.appendChild(row);
+    scrollToBottom();
+  }
+
+  // =========================================================
+  // 5. TYPING INDICATOR
+  // =========================================================
+  function showTyping() { typing.classList.add("show"); scrollToBottom(); }
+  function hideTyping() { typing.classList.remove("show"); }
+
+  // =========================================================
+  // 6. SCROLL CHAT TO BOTTOM
+  // =========================================================
+  function scrollToBottom() {
+    chat.scrollTo({ top: chat.scrollHeight, behavior: "smooth" });
+  }
+
+  // =========================================================
+  // 7. SEND MESSAGE (typed text OR quick-reply label)
+  // =========================================================
+  async function sendMessage(presetText) {
+    const text = (presetText ?? input.value).trim();
+    if (!text || isPending) return;
+
+    if (!CONFIG.WEBHOOK_URL || CONFIG.WEBHOOK_URL.includes("PASTE_YOUR")) {
+      addMessage("Please add your n8n Webhook URL in the CONFIG object at the top of the script.", "bot");
+      return;
+    }
+
+    hero.classList.add("hidden");
+    addMessage(text, "user");
+    input.value = "";
+    autoResize();
+
+    isPending = true;
+    sendBtn.disabled = true;
+    showTyping();
+
+    try {
+      const response = await fetch(CONFIG.WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, sessionId: sessionId })
+      });
+
+      if (!response.ok) {
+        throw new Error("Webhook request failed: " + response.status);
+      }
+
+      const raw = await response.text();
+      let reply = null;
+
+      try {
+        let data = JSON.parse(raw);
+        if (Array.isArray(data)) data = data[data.length - 1] ?? {};
+        reply = data.reply ?? data.output ?? data.response ?? data.text ?? data.message ?? data.data ?? null;
+        if (reply && typeof reply === "object") {
+          reply = reply.output ?? reply.text ?? reply.message ?? JSON.stringify(reply);
+        }
+      } catch (e) {
+        reply = raw; // plain-text (non-JSON) response
+      }
+
+      hideTyping();
+      addMessage(reply ? String(reply) : "Maazrat, mujhe response receive nahi hua.", "bot");
+
+    } catch (error) {
+      console.error(error);
+      hideTyping();
+      addMessage("Maazrat, server se connection mein issue aa gaya hai. Please dobara try karein.", "bot");
+    } finally {
+      isPending = false;
+      sendBtn.disabled = false;
+      input.focus();
+    }
+  }
+
+  // =========================================================
+  // 8. QUICK REPLY — pill buttons call sendPrompt(label)
+  // =========================================================
+  function sendPrompt(label) {
+    sendMessage(label);
+  }
+
+  // =========================================================
+  // 9. ENTER TO SEND  |  Shift + Enter = new line
+  // =========================================================
+  input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      sendMessage();
+    }
+  });
+
+  sendBtn.addEventListener("click", function () { sendMessage(); });
+
+  // =========================================================
+  // 10. AUTO RESIZE TEXTAREA
+  // =========================================================
+  function autoResize() {
+    input.style.height = "46px";
+    input.style.height = Math.min(input.scrollHeight, 130) + "px";
+  }
+  input.addEventListener("input", autoResize);
+
+  // =========================================================
+  // 11. OPTIONAL: RESET CONVERSATION
+  // Run resetConversation() from browser console if needed.
+  // =========================================================
+  function resetConversation() {
+    localStorage.removeItem("clinicSessionId");
+    sessionId = crypto.randomUUID();
+    localStorage.setItem("clinicSessionId", sessionId);
+    location.reload();
+  }
+</script>
+
+</body>
+</html>
