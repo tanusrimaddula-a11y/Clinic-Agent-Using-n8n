@@ -54,9 +54,19 @@ Pinecone Knowledge      ├── Doctor Availability  │
                                 ▼                │
                          Google Sheets           │
                                                  │
-                         Patient Response ◄──────┘
+                         Patient Response ◄──────┘<img width="959" height="497" alt="Screenshot 2026-09-19 210511" src="https://github.com/user-attachments/assets/f61f9cc9-8b0b-4b11-ab6f-fdf1be7f5206" />
+
 
 ---
+## ⚙️ n8n Workflow
+
+The backend is orchestrated through an n8n AI-agent workflow.  
+
+
+https://github.com/user-attachments/assets/a5268b74-c0ba-4c3b-a6c2-bbd0dfef93e8
+
+https://github.com/user-attachments/assets/8e21e75a-a033-415c-a910-a00ff339d8c5
+
 
 # 🚀 Core Features
 
@@ -81,6 +91,12 @@ Patients can ask questions such as:
 The FAQ system uses a **Retrieval-Augmented Generation (RAG)** architecture so clinic information can be retrieved from the knowledge base instead of relying entirely on the language model.
 
 ---
+## UI 
+
+https://github.com/user-attachments/assets/92006b48-c9de-463f-b135-9344813d89dd
+
+https://github.com/user-attachments/assets/ad4e91ad-2753-4c72-bfed-fd341d021aa0
+
 
 ### 🧠 AI Knowledge Retrieval
 
